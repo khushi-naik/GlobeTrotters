@@ -1,0 +1,59 @@
+body{
+    background-color: #E4F4FB;
+}
+
+.navbar{
+    background-color:#5E8EB9;  
+    height: 75px; 
+}
+
+.nav-item {
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 39px;
+}
+
+a{
+   
+    font-size: 17px;
+   
+}
+.md-form{
+    margin-bottom: 35px;
+}
+.s-img{
+    width: 800px;
+    height: 505px;
+    border-radius: 5px;
+    
+}
+
+.sign-form input{
+    margin-top: 8px;
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#foot{
+    background-color:#33159f;  
+    padding-top: 18px;
+}
+
+
+.card img{
+    height: 265px;
+}
+
+.abt{
+    background-color: #4b259e;
+}
+
+#test1::before,
+#test2::before {
+display: block;
+content: " ";
+margin-top: -65px;
+height: 65px;
+visibility: hidden;
+}
