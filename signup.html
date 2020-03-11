@@ -3,20 +3,45 @@
         <title>login</title>
         <link rel="stylesheet" type="text/css" href="land.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script>
+            function validate(){
+                //alert("connect");
+               /* var email = document.getElementById("em").value;
+                var regx=/^([a-zA-z0-9\.]+)@([a-zA-Z0-9]+).([a-z]{2,8}).([a-z]{2,8})?$/;
+                if(regx.test(user1))
+                {
+                    alert("valid roll/phone/email-id number");
+                }
+                else
+                {
+                alert("invalid roll/phone/email-id number");
+                }*/
+                var pass = document.getElementById("fpass");
+                var cpass = document.getElementById("cpass")
+                if(pass.value.trim()!=cpass.value.trim())
+                {
+                    alert("passwords entered do not match.");
+                    return false;
+                }
+                else
+                 true;
+                
+            }
+        </script>
     </head>
     <body>
         <div class="sn-contain">
             <h3>Be a member</h3>
             <div class="form">
-            <form>
+            <form onsubmit="return validate()" action="index.html">
                 <label for="em">Email</label><br>
-                <input id="em" type="email" placeholder="Email"><br>
+                <input id="em" type="email" placeholder="Email" required><br>
                 <label for="uname">Username</label><br>
-                <input id="uname" type="text" placeholder="Username"><br>
+                <input id="uname" type="text" placeholder="Username" required><br>
                 <label for="fpass">Password</label><br>
-                <input id="fpass" type="password" placeholder="password"><br>
+                <input id="fpass" type="password" placeholder="password" required><br>
                 <label for="cpass">Confirm Password</label><br>
-                <input id="cpass" type="password" placeholder="confirm password"><br><br>
+                <input id="cpass" type="password" placeholder="confirm password" required><br><br>
                 <button type="submit">submit</button>
             </form>
             </div>
