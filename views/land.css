@@ -1,0 +1,70 @@
+.viewback {
+    background: url("https://images.pexels.com/photos/853199/pexels-photo-853199.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")no-repeat center center;
+    background-size: cover;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar {
+        background-color: rgb(20, 32, 53);
+    }
+}
+
+
+.top-nav-collapse {
+    background-color: rgb(28, 56, 102);
+}
+
+.dest-nav{
+  background-color: rgb(28, 56, 102);
+}
+.dest-nav a{
+  color: white;
+}
+html,
+body,
+header,
+.view {
+  height: 100%;
+}
+li{
+    padding-left: 80px;
+}
+
+.anim-typewriter{
+    animation: typewriter 4s steps(44) 1s 1 normal both,
+               blinkTextCursor 500ms steps(44) infinite normal;
+  }
+  @keyframes typewriter{
+    from{width: 0;}
+    to{width: 16em;}
+  }
+  @keyframes blinkTextCursor{
+    from{border-right-color: rgba(240, 235, 235, 0.75);}
+    to{border-right-color: transparent;}
+  }
+  .line-1{
+    position: relative;
+    top: 50%;  
+    width: 24em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(32, 32, 32, 0.75);
+    font-size: 130%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+}
+
+.colorsign{
+    background-color: rgba(230, 228, 228, 0.1)
+}
+
+footer{
+  background-color: rgb(20, 32, 53); 
+}
+footer ul{
+  list-style: none;
+}
+.con-img{
+  height: 234px;
+}
