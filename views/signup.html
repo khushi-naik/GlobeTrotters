@@ -1,50 +1,202 @@
 <html>
-    <head>
-        <title>login</title>
-        <link rel="stylesheet" type="text/css" href="land.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <script>
-            function validate(){
-                //alert("connect");
-               /* var email = document.getElementById("em").value;
-                var regx=/^([a-zA-z0-9\.]+)@([a-zA-Z0-9]+).([a-z]{2,8}).([a-z]{2,8})?$/;
-                if(regx.test(user1))
-                {
-                    alert("valid roll/phone/email-id number");
-                }
-                else
-                {
-                alert("invalid roll/phone/email-id number");
-                }*/
-                var pass = document.getElementById("fpass");
-                var cpass = document.getElementById("cpass")
-                if(pass.value.trim()!=cpass.value.trim())
-                {
-                    alert("passwords entered do not match.");
-                    return false;
-                }
-                else
-                 true;
-                
+
+<head>
+    <title>login</title>
+    <link rel="stylesheet" type="text/css" href="land.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/css/mdb.min.css" rel="stylesheet">
+
+    <script>
+        function validate() {
+            //alert("connect");
+            /* var email = document.getElementById("em").value;
+             var regx=/^([a-zA-z0-9\.]+)@([a-zA-Z0-9]+).([a-z]{2,8}).([a-z]{2,8})?$/;
+             if(regx.test(user1))
+             {
+                 alert("valid roll/phone/email-id number");
+             }
+             else
+             {
+             alert("invalid roll/phone/email-id number");
+             }*/
+            var pass = document.getElementById("password");
+            var cpass = document.getElementById("cpass")
+            if (pass.value.trim() != cpass.value.trim()) {
+                alert("passwords entered do not match.");
+                return false;
             }
-        </script>
-    </head>
-    <body>
-        <div class="sn-contain">
-            <h3>Be a member</h3>
-            <div class="form">
-            <form onsubmit="return validate()" action="index.html">
-                <label for="em">Email</label><br>
-                <input id="em" type="email" placeholder="Email" required><br>
-                <label for="uname">Username</label><br>
-                <input id="uname" type="text" placeholder="Username" required><br>
-                <label for="fpass">Password</label><br>
-                <input id="fpass" type="password" placeholder="password" required><br>
-                <label for="cpass">Confirm Password</label><br>
-                <input id="cpass" type="password" placeholder="confirm password" required><br><br>
-                <button type="submit">submit</button>
-            </form>
+            else
+                true;
+
+        }
+    </script>
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="#"><strong>Globe Trotters.</strong></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#About-us">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="destination.html">Destinations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Contact">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#FAQs">FAQs</a>
+                        </li>
+                        <li class="nav-item">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="view intro-2 viewback">
+            <div class="full-bg-img">
+                <div class="mask rgba-indigo-slight flex-center">
+                    <div class="container" style="margin-left: 30%">
+
+                        <div class="white-text text-center wow fadeInUp">
+
+
+                            <!-- Default form login -->
+                            <div class="col-md-6 rounded z-depth-4 colorsign ">
+                                <!-- Default form login -->
+                                <form onsubmit="return validate()" class="text-center p-5" action="index.html">
+                                    <p class="center line-1 anim-typewriter">Explore with us and keep writing.<i
+                                            class="far fa-heart"></i>
+                                    </p>
+
+                                    <p class="h4 mb-4">Sign in</p>
+                                    <input id="first_name" type="text" placeholder="first name" required class="form-control mb-4">
+                                    <input id="last_name" type="text" placeholder="last name" required class="form-control mb-4">
+                                    <input id="email" type="email" placeholder="Email" required class="form-control mb-4">
+                                    <input id="password" type="password" placeholder="password" required class="form-control mb-4">
+                                    <input id="cpass" type="password" placeholder="confirm password" required class="form-control mb-4"> 
+                                    
+                                
+
+                                    <div class="d-flex justify-content-around">
+                                        <div>
+                                            <!-- Remember me -->
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="defaultLoginFormRemember">
+                                                <label class="custom-control-label"
+                                                    for="defaultLoginFormRemember">Remember me</label>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <!-- Forgot password -->
+                                            <a href="">Forgot password?</a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Sign in button -->
+                                    <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+
+                                    <!-- Register -->
+                                    <p>Not a member?
+                                        <a href="signup.html">Register</a>
+                                    </p>
+
+                                    <!-- Social login -->
+                                    <p>or sign in with:</p>
+
+                                    <a href="#" class="mx-2" role="button"><i
+                                            class="fab fa-facebook-f light-blue-text"></i></a>
+                                    <a href="#" class="mx-2" role="button"><i
+                                            class="fab fa-twitter light-blue-text"></i></a>
+                                    <a href="#" class="mx-2" role="button"><i
+                                            class="fab fa-linkedin-in light-blue-text"></i></a>
+
+                                </form>
+                                <!-- Default form login -->
+                            </div>
+                            <!-- Default form login -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </body>
+
+    </header>
+    <br>
+    <br>
+    <!-- Footer -->
+  <footer class="page-footer font-small pt-4">
+
+    <!--Footer Links-->
+    <div class="container-fluid">
+      <div class="row">
+
+
+          <div class="col-md-4">
+              <h1>GlobeTrotters.</h1>
+
+          </div>
+          <!--/.First column-->
+
+          <!--Second column-->
+          <div class="col-md-4">
+
+              <ul>
+                  <li><a href="#!">About Us</a></li>
+                  <li><a href="#!">Destinations</a></li>
+                  <li><a href="#!">FAQs</a></li>
+              </ul>
+          </div>
+          <div class="col-md-4" id="Contact">
+              <h4>Contact Us</h4>
+              <p><i class="fa fa-mobile" aria-hidden="true"></i> 1234567890
+                <br><i class="fa fa-phone" aria-hidden="true"></i> 0987654321
+                <br><i class="fa fa-envelope" aria-hidden="true"></i> asdv@gmail.com</p>
+          </div>
+          <!--/.Second column-->
+      </div>
+  </div>
+
+<!-- Copyright -->
+<div class="footer-copyright text-center py-3"> Made with <i class="far fa-heart"></i> by GlobeTrotters
+</div>
+<!-- Copyright -->
+
+</footer>
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/js/mdb.min.js"></script>
+</body>
+
 </html>

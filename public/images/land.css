@@ -1,5 +1,5 @@
 .viewback {
-    background: url("https://images.pexels.com/photos/853199/pexels-photo-853199.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")no-repeat center center;
+    background: url("header.jpeg")no-repeat center center;
     background-size: cover;
 }
 
@@ -9,7 +9,9 @@
     }
 }
 
-
+.car{
+  height: 490px;
+}
 .top-nav-collapse {
     background-color: rgb(28, 56, 102);
 }
@@ -54,6 +56,7 @@ li{
     overflow: hidden;
     transform: translateY(-50%);    
 }
+
 
 .colorsign{
     background-color: rgba(230, 228, 228, 0.1)
