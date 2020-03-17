@@ -2,7 +2,7 @@
 
 <head>
     <title>login</title>
-    <link rel="stylesheet" type="text/css" href="land.css">
+    <link rel="stylesheet" type="text/css" href="images/land.css">
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Google Fonts -->
@@ -85,16 +85,16 @@
                             <!-- Default form login -->
                             <div class="col-md-6 rounded z-depth-4 colorsign ">
                                 <!-- Default form login -->
-                                <form onsubmit="return validate()" class="text-center p-5" action="index.html">
+                                <form onsubmit="return validate()" class="text-center p-5" action="/sign_up" method="post">
                                     <p class="center line-1 anim-typewriter">Explore with us and keep writing.<i
                                             class="far fa-heart"></i>
                                     </p>
 
                                     <p class="h4 mb-4">Sign in</p>
-                                    <input id="first_name" type="text" placeholder="first name" required class="form-control mb-4">
-                                    <input id="last_name" type="text" placeholder="last name" required class="form-control mb-4">
-                                    <input id="email" type="email" placeholder="Email" required class="form-control mb-4">
-                                    <input id="password" type="password" placeholder="password" required class="form-control mb-4">
+                                    <input name="first_name" id="first_name" type="text" placeholder="first name" required class="form-control mb-4">
+                                    <input name="last_name" id="last_name" type="text" placeholder="last name" required class="form-control mb-4">
+                                    <input name="email" id="email" type="email" placeholder="Email" required class="form-control mb-4">
+                                    <input name="password" id="password" type="password" placeholder="password" required class="form-control mb-4">
                                     <input id="cpass" type="password" placeholder="confirm password" required class="form-control mb-4"> 
                                     
                                 
@@ -116,12 +116,10 @@
                                     </div>
 
                                     <!-- Sign in button -->
-                                    <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+                                    <button class="btn btn-info btn-block my-4" type="submit">Sign Up</button>
 
                                     <!-- Register -->
-                                    <p>Not a member?
-                                        <a href="signup.html">Register</a>
-                                    </p>
+                                    
 
                                     <!-- Social login -->
                                     <p>or sign in with:</p>
