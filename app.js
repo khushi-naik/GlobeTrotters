@@ -1,9 +1,7 @@
 var express=require("express"); 
-var bodyParser=require("body-parser");
-const session = require('express-session') 
+var bodyParser=require("body-parser"); 
 const path = require('path');
 var http = require('http');
-const app = express();
   
 var app=express()
 //var testImg = require('path').join(__dirname,'/public'); 
@@ -29,7 +27,7 @@ http.createServer(function (req, res) {
 //app.set('port', process.env.PORT || 3000);
 //app.set('views', path.join(__dirname, 'views'));
 
-app.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));  
+  
 app.use(bodyParser.json()); 
 app.use(express.static('public')); 
 app.use(bodyParser.urlencoded({ 
@@ -96,21 +94,3 @@ app.get('/samerica',function(req,res){
 app.listen(3000,function(){
     console.log("connected to server");
 })
-
-//initializing session
-app.use(session({secret: 'ssshhhhh'}));
-
-//session variable to keep track
-var sess;
-
-app.get('/',function(req,res){
-    sess=req.session;
-    /*
-    * Here we have assign the 'session' to 'sess'.
-    * Now we can create any number of session variable we want.
-    * in PHP we do as $_SESSION['var name'].
-    * Here we do like this.
-    */
-    sess.email; // equivalent to $_SESSION['email'] in PHP.
-    sess.username; // equivalent to $_SESSION['username'] in PHP.
-});
