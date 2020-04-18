@@ -3,7 +3,7 @@ var bodyParser=require("body-parser");
 const path = require('path');
 var http = require('http');
   
-var app=express()
+var app=express();
 //var testImg = require('path').join(__dirname,'/public'); 
 //app.use(express.static(testImg));
 var nStatic = require('node-static');
@@ -20,6 +20,7 @@ var fileServer = new nStatic.Server('./public');
 http.createServer(function (req, res) {
     
     fileServer.serve(req, res);
+    console.log("connected to 5000");
 
 }).listen(5000);
 
@@ -92,5 +93,6 @@ app.get('/samerica',function(req,res){
     res.sendFile(path.join(__dirname+'/views/samerica.html'));
 });
 app.listen(3000,function(){
-    console.log("connected to server");
+    console.log("connected to server 3000");
 })
+
