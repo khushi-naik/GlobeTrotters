@@ -71,3 +71,9 @@ footer ul{
 .con-img{
   height: 234px;
 }
+
+#blg_frm{
+background-image: url(https://images.pexels.com/photos/3199399/pexels-photo-3199399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+background-repeat: no-repeat;
+opacity: 0.4;
+}

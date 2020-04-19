@@ -6,6 +6,7 @@ var http = require('http');
 var app=express();
 //var testImg = require('path').join(__dirname,'/public'); 
 //app.use(express.static(testImg));
+app.set('view engine', 'ejs');
 var nStatic = require('node-static');
 const mongoose = require('mongoose'); 
 mongoose.connect('mongodb://localhost:27017/user'); 
@@ -35,15 +36,15 @@ app.use(bodyParser.urlencoded({
     extended: true
 })); 
 
-  
+ //homepage 
 app.get('/',function(req,res){
     res.sendFile(path.join(__dirname+'/views/index.html'));
 }); 
-
+//signup form
 app.get('/signup',function(req,res){
     res.sendFile(path.join(__dirname+'/views/signup.html'));
 }); 
-
+//information from sign up form
 app.post('/sign_up', function(req,res){ 
     var fname = req.body.first_name; 
     var lname = req.body.last_name;
@@ -69,11 +70,21 @@ app.post('/sign_up', function(req,res){
     //return res.redirect('signup_success.html'); 
 });
 
+//trial for dashboard
+app.get('/dashboard',function(req,res){
+    res.render('dashboard');
+});
+
+//trial for blog submission
+app.get('/submission',function(req,res){
+    res.render('submission');
+});
+//destinations page
 app.get('/destination',function(req,res){
     
     res.sendFile(path.join(__dirname+'/views/destination.html'));
 });
-
+//choose country pages
 app.get('/asia',function(req,res){    
     res.sendFile(path.join(__dirname+'/views/asia.html'));
 });
@@ -92,6 +103,10 @@ app.get('/namerica',function(req,res){
 app.get('/samerica',function(req,res){    
     res.sendFile(path.join(__dirname+'/views/samerica.html'));
 });
+
+
+
+
 app.listen(3000,function(){
     console.log("connected to server 3000");
 })
