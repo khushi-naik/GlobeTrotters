@@ -59,7 +59,7 @@ li{
 
 
 .colorsign{
-    background-color: rgba(230, 228, 228, 0.1)
+    background-color: rgba(230, 228, 228, 0.1);
 }
 
 footer{
@@ -78,51 +78,3 @@ background-repeat: no-repeat;
 opacity: 0.4;
 }
 
-.navigator{
-  top: 220px;
-  bottom: 300px;
-  position: fixed;
-  font-family: 'Roboto',sans-serif;
-  font-weight: 400;
-  float: left;
-  font-size: 20px;
-  line-height: 20px;
-  letter-spacing: .05em;
-  justify-content: center;
-  color: #d1d1d1;
-}
-
-
-
-.navigator ul li{
-  padding-bottom: 40px;
-  padding-left: 10px;
-  list-style-type: none;
-}
-
-
-
-.font-opacity{
-  opacity: 0.6;
-}
-
-
-.font-prop:hover, .font-prop:focus{
-  font-size: 24px;
-  color: #222222;
-  text-decoration: none;
-  opacity: 1;
-}
-
-.font-prop:visited, .font-prop:focus{
-  text-decoration: none;
-  color: #313030;
-  width: 12%;
-  opacity: 1;
-}
-
-
-.page-footer{
-  margin-top: 200px;
-  padding-top: 200px;
-}
