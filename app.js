@@ -3,30 +3,41 @@ var bodyParser = require("body-parser");
 const path = require('path');
 var http = require('http');
 var User = require('./model/User');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const session = require('express-session')
+
+const { ensureAuthenticated } = require('./config/auth')
+
+
+//passort
+require('./config/passport')(passport)
+
 //console.log("exported value is "+v.variable.apple);
 var app = express();
 //var testImg = require('path').join(__dirname,'/public'); 
 //app.use(express.static(testImg));
 app.set('view engine', 'ejs');
+
 var nStatic = require('node-static');
+
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/blog');
+mongoose.connect('mongodb://localhost:27017/blog', ({useUnifiedTopology: true, useNewUrlParser: true}));
 var db = mongoose.connection;
 db.on('error', console.log.bind(console, "connection error"));
 db.once('open', function (callback) {
     console.log("connection succeeded");
 })
 
+
 var fileServer = new nStatic.Server('./public');
 
 http.createServer(function (req, res) {
 
     fileServer.serve(req, res);
-    console.log("connected to 5000");
+    console.log("connected to 6060");
 
-}).listen(5000);
+}).listen(6060);
 
 // all environments
 //app.set('port', process.env.PORT || 3000);
@@ -39,6 +50,17 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+//session
+app.use(session ({
+    secret: 'Khushi_jahnavi',
+    resave: true,
+    saveUninitialized: true
+}))
+
+
+//passport
+app.use(passport.initialize())
+app.use(passport.session())
 
 //homepage 
 app.get('/', function (req, res) {
@@ -49,10 +71,9 @@ app.post('/login',function(req,res,next){
     passport.authenticate('local', {
         successRedirect: '/dashboard',
         failureRedirect: '/',
-        failureFlash : true 
     })(req,res,next);
-    //res.send("login page comes here");
 })
+
 //signup form
 app.get('/signup', function (req, res) {
     res.sendFile(path.join(__dirname + '/views/signup.html'));
@@ -67,7 +88,7 @@ app.post('/sign_up', function (req, res) {
 
         }
 
-        console.log(data);
+
         User.findOne({email : data.email},function(err,result){
             if(err) throw err;
             if(result == null){
@@ -83,52 +104,25 @@ app.post('/sign_up', function (req, res) {
                     new_user.password = hash;
                     new_user.save(function(err){
                         if (err) return handleError(err);
-                        res.send("user recorded successfully");
+                        res.redirect("/");
                     });
                     
                 });
             });
             }
-            //console.log(result.length);
+            
             else{
             console.log(result);
             res.send("email id has been registered already");
             }
         });
         
-    /*var fname = req.body.first_name; 
-  var lname = req.body.last_name;
-  var email =req.body.email; 
-  var pass = req.body.password; */
-
-
-    /*var data = { 
-        "f_name": fname,
-        "l_name": lname, 
-        "email":email, 
-        "password":pass,  
-    } 
-
-    console.log(data.name);
-    db.collection('user_details').insertOne(data,function(err, collection){ 
-         if (err) throw err; 
-         console.log("Record inserted Successfully"); 
-              
-    }); 
-    //res.send("values taken");    
-    res.sendFile(path.join(__dirname+'/views/submission.html'));
-    //return res.redirect('signup_success.html'); */
 });
-
-
 
 
 //trial for dashboard
-app.get('/dashboard', function (req, res) {
-    res.render('dashboard');
-});
-
-
+app.get('/dashboard', ensureAuthenticated, (req, res) => 
+res.render('dashboard'))
 
 //trial for blog submission
 app.get('/submission', function (req, res) {
@@ -171,7 +165,7 @@ app.get('/samerica', function (req, res) {
 
 
 
-app.listen(3000, function () {
+app.listen(3030, function () {
     console.log("connected to server 3000");
 })
 
