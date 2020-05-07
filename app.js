@@ -42,7 +42,7 @@ http.createServer(function (req, res) {
 // all environments
 //app.set('port', process.env.PORT || 3000);
 //app.set('views', path.join(__dirname, 'views'));
-
+//comments added
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
