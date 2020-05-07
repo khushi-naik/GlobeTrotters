@@ -57,7 +57,7 @@ app.use(session ({
     saveUninitialized: true
 }))
 
-
+//session login done
 //passport
 app.use(passport.initialize())
 app.use(passport.session())
