@@ -50,51 +50,38 @@
     <br>
     <div class="container">
         <div class="row justify-content-center">
-        <div style="border-radius: 7px;" class="jumbotron p-0 col-md-11">
-
+            <div style="border-radius: 7px;"class="jumbotron p-0 col-md-11">
             <!-- Card image -->
-            <!-- <div class="view overlay rounded-top"> -->
-                <img src="images/australia.jpeg" class="img-fluid" alt="Sample image">
+            <div class="view overlay rounded-top">
+                <img src="images/samerica.jpeg" class="img-fluid" alt="Sample image">
                 <a href="#">
                     <div class="mask rgba-white-slight"></div>
                 </a>
-            <!-- </div> -->
+            </div>
 
             <!-- Card content -->
             <div class="card-body text-center mb-3">
 
                 <!-- Title -->
-                <h3 class="card-title h3 my-4"><strong>Australia</strong></h3>
+                <h3 class="card-title h3 my-4"><strong>South America</strong></h3>
                 <!-- Text -->
                 <p class="card-text py-2">Some quick example text to build on the card title and make up the bulk of the
                     card's</p>
                 <!-- Button -->
                 <!--Dropdown primary-->
                 <div class="dropdown">
-                    <!--Trigger-->
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1-1"
-                        data-toggle="dropdown">Bootstrap
-                        search</button>
-
-                    <!--Menu-->
-                    <div class="dropdown-menu dropdown-primary" id="your-custom-id">
-                        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                        <a class="dropdown-item mdb-dropdownLink-1" href="https://mdbootstrap.com/">MDB</a>
-                        <a class="dropdown-item mdb-dropdownLink-1" href="https://mdbootstrap.com/docs/react/">MDB
-                            react</a>
-                        <a class="dropdown-item mdb-dropdownLink-1" href="https://mdbootstrap.com/docs/angular/">MDB
-                            angular</a>
-                        <a class="dropdown-item mdb-dropdownLink-1" href="https://mdbootstrap.com/docs/vue/">MDB vue</a>
-                        <a class="dropdown-item mdb-dropdownLink-1" href="https://brandflow.net/">BrandFlow</a>
-                        <a class="dropdown-item mdb-dropdownLink-1"
-                            href="https://mdbootstrap.com/education/bootstrap/">MDB
-                            Rocks</a>
-                    </div>
+                    <form action="country" method="POST">
+                        <select name="country">
+                          <% samerica[0].country.forEach(function (op) { %>
+                          <option value="<%= op %>"><%= op %></option>
+                          <% }) %>
+                        </select>
+                        <input type="submit">
+                        </form>
                 </div>
                 <!--/Dropdown primary-->
             </div>
-
-        </div>
+            </div>
         </div>
 
 
@@ -144,6 +131,7 @@
 
         </div>
         <!-- News jumbotron -->
+        
     </div>
 
     <footer class="page-footer center-on-small-only" id="foot">
@@ -176,6 +164,8 @@
                 </div>
                 <!--/.Second column-->
             </div>
+        </div>
+        <div class="footer-copyright text-center py-3"> Made with <i class="far fa-heart"></i> by GlobeTrotters
         </div>
 
     </footer>

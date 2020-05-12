@@ -20,7 +20,28 @@ const userschema = mongoose.Schema({
         type: String,
         required: true,
         trim: true
-    }
+    },
+    continent: [{
+        continent_name: {
+            type: String,
+            trim: true
+        },
+        blog: [{
+            country:{
+                type: String,
+                trim: true
+            },
+            title:{
+                type: String
+            },
+            content:{
+                type: String
+            }
+
+        }]
+
+        }]
+
 });
 
  

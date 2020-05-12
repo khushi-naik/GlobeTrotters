@@ -141,22 +141,63 @@ app.get('/destination', function (req, res) {
 
 //choose country pages
 app.get('/asia', function (req, res) {
-    res.sendFile(path.join(__dirname + '/views/asia.html'));
+    db.collection("world").find({continent:"Asia"}).toArray(function(err,result){
+        if(err) throw err;
+        console.log(result);
+        var obj = {asia: result};
+        res.render('asia',obj);
+    })
+    //res.sendFile(path.join(__dirname + '/views/asia.html'));
+    
 });
 app.get('/europe', function (req, res) {
-    res.sendFile(path.join(__dirname + '/views/europe.html'));
+    db.collection("world").find({continent:"Europe"}).toArray(function(err,result){
+        if(err) throw err;
+        console.log(result);
+        var obj = {europe: result};
+        res.render('europe',obj);
+    })
+    //res.sendFile(path.join(__dirname + '/views/europe.html'));
 });
 app.get('/africa', function (req, res) {
-    res.sendFile(path.join(__dirname + '/views/africa.html'));
+    db.collection("world").find({continent:"Africa"}).toArray(function(err,result){
+        if(err) throw err;
+        console.log(result);
+        var obj = {africa: result};
+        res.render('africa',obj);
+    })
+    //res.sendFile(path.join(__dirname + '/views/africa.html'));
 });
 app.get('/australia', function (req, res) {
-    res.sendFile(path.join(__dirname + '/views/australia.html'));
+    db.collection("world").find({continent:"Australia"}).toArray(function(err,result){
+        if(err) throw err;
+        console.log(result);
+        var obj = {australia: result};
+        res.render('australia',obj);
+    })
+    //res.sendFile(path.join(__dirname + '/views/australia.html'));
 });
 app.get('/namerica', function (req, res) {
-    res.sendFile(path.join(__dirname + '/views/namerica.html'));
+    db.collection("world").find({continent:"North America"}).toArray(function(err,result){
+        if(err) throw err;
+        console.log(result);
+        var obj = {namerica: result};
+        res.render('namerica',obj);
+    })
+    //res.sendFile(path.join(__dirname + '/views/namerica.html'));
 });
 app.get('/samerica', function (req, res) {
-    res.sendFile(path.join(__dirname + '/views/samerica.html'));
+    db.collection("world").find({continent:"South America"}).toArray(function(err,result){
+        if(err) throw err;
+        console.log(result);
+        var obj = {samerica: result};
+        res.render('samerica',obj);
+    })
+    //res.sendFile(path.join(__dirname + '/views/samerica.html'));
+});
+
+app.post('/country',function(req,res){
+    console.log(req.body.country);
 });
 
 
@@ -165,7 +206,7 @@ app.get('/samerica', function (req, res) {
 
 
 
-app.listen(3030, function () {
+app.listen(3000, function () {
     console.log("connected to server 3000");
 })
 
