@@ -26,23 +26,29 @@ const userschema = mongoose.Schema({
             type: String,
             trim: true
         },
-        blog: [{
-            country:{
+        blog: {
+            country: {
                 type: String,
                 trim: true
             },
-            title:{
+            title: {
                 type: String
             },
-            content:{
+            category: [{
+                type: String
+            }],
+            description: {
+                type: String
+            },
+            content: {
                 type: String
             }
 
-        }]
+        }
 
-        }]
+    }]
 
 });
 
- 
+
 module.exports = mongoose.model('User', userschema);

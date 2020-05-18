@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
 var nStatic = require('node-static');
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/blog', ({useUnifiedTopology: true, useNewUrlParser: true}));
+mongoose.connect('mongodb://localhost:27017/blog', ({ useUnifiedTopology: true, useNewUrlParser: true }));
 var db = mongoose.connection;
 db.on('error', console.log.bind(console, "connection error"));
 db.once('open', function (callback) {
@@ -51,7 +51,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 //session
-app.use(session ({
+app.use(session({
     secret: 'Khushi_jahnavi',
     resave: true,
     saveUninitialized: true
@@ -67,11 +67,13 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/views/index.html'));
 });
 
-app.post('/login',function(req,res,next){
+app.post('/login', function (req, res, next) {
     passport.authenticate('local', {
         successRedirect: '/dashboard',
         failureRedirect: '/',
-    })(req,res,next);
+    })(req, res, next);
+
+    console.log("sess id is" + req.sessionID);
 })
 
 //signup form
@@ -80,54 +82,90 @@ app.get('/signup', function (req, res) {
 });
 //information from sign up form
 app.post('/sign_up', function (req, res) {
-        var data = {
-            first_name : req.body.first_name,
-            last_name : req.body.last_name,
-            email : req.body.email,
-            password : req.body.password
+    var data = {
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        password: req.body.password
 
-        }
+    }
 
 
-        User.findOne({email : data.email},function(err,result){
-            if(err) throw err;
-            if(result == null){
+    User.findOne({ email: data.email }, function (err, result) {
+        if (err) throw err;
+        if (result == null) {
             console.log("record doesnt exist");
             const new_user = new User(data);
-            bcrypt.genSalt(10,function(err,salt){
-                if(err)
-                 return next(err);
-                 bcrypt.hash(new_user.password, salt, function(err, hash) {
+            bcrypt.genSalt(10, function (err, salt) {
+                if (err)
+                    return next(err);
+                bcrypt.hash(new_user.password, salt, function (err, hash) {
                     if (err) throw err;
-            
+
                     // override the cleartext password with the hashed one
                     new_user.password = hash;
-                    new_user.save(function(err){
+                    new_user.save(function (err) {
                         if (err) return handleError(err);
                         res.redirect("/");
                     });
-                    
+
                 });
             });
-            }
-            
-            else{
+        }
+
+        else {
             console.log(result);
             res.send("email id has been registered already");
-            }
-        });
-        
+        }
+    });
+
 });
 
 
 //trial for dashboard
-app.get('/dashboard', ensureAuthenticated, (req, res) => 
-res.render('dashboard'))
+app.get('/dashboard', ensureAuthenticated, (req, res) =>
+    User.findOne({email: req.user.email},function(err,result){
+        if(err) throw err;
+        var obd = {dashboard: result};
+        //console.log(result);
+        res.render('dashboard',obd);
+    })
+)
 
 //trial for blog submission
-app.get('/submission', function (req, res) {
+/*app.get('/submission', function (req, res) {
     res.render('submission');
+});*/
+app.get('/newblog', function (req, res) {
+    db.collection("world").find({}).toArray(function (err, result) {
+        if (err) throw err;
+        //console.log(result);
+        var count = { submission: result };
+        res.render('submission', count);
+    })
+    //res.render('submission');
+    //console.log("sess id is" + req.sessionID);
+    //console.log("user is " + req.user.email);
+
 });
+
+app.post('/blog', function (req, res) {
+    console.log(req.body.blog_title);
+    console.log(req.body.blog_country);
+    console.log(req.body.blog_category);
+    console.log(req.body.blog_description);
+    console.log(req.body.blog_content);
+    db.collection("world").findOne({ country: req.body.blog_country }, function (err, result) {
+        if (err) throw err;
+        //console.log(result);
+        //console.log(result.continent);
+        var cont = result.continent;
+        User.findOneAndUpdate({ "email": req.user.email }, { $push: { continent: { continent_name: cont, blog: { country: req.body.blog_country, title: req.body.blog_title, category: req.body.blog_category, description: req.body.blog_description, content: req.body.blog_content } } } }, { upsert: true }, function (err, doc) {
+            if (err) throw err;
+            console.log("updated");
+        });
+    })
+})
 
 
 
@@ -140,63 +178,97 @@ app.get('/destination', function (req, res) {
 
 
 //choose country pages
+var test;
+var wor;
+var conb;
 app.get('/asia', function (req, res) {
-    db.collection("world").find({continent:"Asia"}).toArray(function(err,result){
-        if(err) throw err;
-        console.log(result);
-        var obj = {asia: result};
-        res.render('asia',obj);
+    db.collection("world").find({ continent: "Asia" }).toArray(function (err, result) {
+        if (err) throw err;
+        //console.log('first result is ' + result);
+        //test= {'name': 'cadbury',
+          //          'type': 'candy'};
+        //var obj = { asia: result };
+        wor=result;
+        //console.log('wor is ' + wor);
+        
+        
     })
-    //res.sendFile(path.join(__dirname + '/views/asia.html'));
+    db.collection('users').find({}).toArray(function(err,results){
+        if(err) throw err;
+        conb = results;
+        //results.forEach(function(ar){
+            //console.log('ar is');
+            //console.log(ar);
+            /*ar.continent.forEach(function(arr){
+                if(arr.continent_name=='Asia'){
+                    console.log('arr is');
+                    console.log(arr);
+                    if(!conb.includes(arr))
+                    conb.push(arr);
+                 }
+                
+            })*/
+        //})
+        //console.log('results of user : ');
+        //console.log(results);
+        //console.log('wor is ' );
+        //console.log(wor);
+       // console.log('conblog is');
+    //console.log(conb);
+    //console.log(conb.length);
+    });
     
+    res.render('asia', {asia: wor,blogs: conb});
+    //res.sendFile(path.join(__dirname + '/views/asia.html'));
+
 });
 app.get('/europe', function (req, res) {
-    db.collection("world").find({continent:"Europe"}).toArray(function(err,result){
-        if(err) throw err;
+    db.collection("world").find({ continent: "Europe" }).toArray(function (err, result) {
+        if (err) throw err;
         console.log(result);
-        var obj = {europe: result};
-        res.render('europe',obj);
+        var obj = { europe: result };
+        res.render('europe', obj);
     })
     //res.sendFile(path.join(__dirname + '/views/europe.html'));
 });
 app.get('/africa', function (req, res) {
-    db.collection("world").find({continent:"Africa"}).toArray(function(err,result){
-        if(err) throw err;
+    db.collection("world").find({ continent: "Africa" }).toArray(function (err, result) {
+        if (err) throw err;
         console.log(result);
-        var obj = {africa: result};
-        res.render('africa',obj);
+        var obj = { africa: result };
+        res.render('africa', obj);
     })
     //res.sendFile(path.join(__dirname + '/views/africa.html'));
 });
 app.get('/australia', function (req, res) {
-    db.collection("world").find({continent:"Australia"}).toArray(function(err,result){
-        if(err) throw err;
+    db.collection("world").find({ continent: "Australia" }).toArray(function (err, result) {
+        if (err) throw err;
         console.log(result);
-        var obj = {australia: result};
-        res.render('australia',obj);
+        var obj = { australia: result };
+        res.render('australia', obj);
     })
     //res.sendFile(path.join(__dirname + '/views/australia.html'));
 });
 app.get('/namerica', function (req, res) {
-    db.collection("world").find({continent:"North America"}).toArray(function(err,result){
-        if(err) throw err;
+    db.collection("world").find({ continent: "North America" }).toArray(function (err, result) {
+        if (err) throw err;
         console.log(result);
-        var obj = {namerica: result};
-        res.render('namerica',obj);
+        var obj = { namerica: result };
+        res.render('namerica', obj);
     })
     //res.sendFile(path.join(__dirname + '/views/namerica.html'));
 });
 app.get('/samerica', function (req, res) {
-    db.collection("world").find({continent:"South America"}).toArray(function(err,result){
-        if(err) throw err;
+    db.collection("world").find({ continent: "South America" }).toArray(function (err, result) {
+        if (err) throw err;
         console.log(result);
-        var obj = {samerica: result};
-        res.render('samerica',obj);
+        var obj = { samerica: result };
+        res.render('samerica', obj);
     })
     //res.sendFile(path.join(__dirname + '/views/samerica.html'));
 });
 
-app.post('/country',function(req,res){
+app.post('/country', function (req, res) {
     console.log(req.body.country);
 });
 
