@@ -72,7 +72,17 @@ app.post('/login', function (req, res, next) {
         failureRedirect: '/',
     })(req, res, next);
 
-    console.log("sess id is" + req.sessionID);
+    //console.log("sess id is" + req.sessionID);
+})
+
+//logout
+app.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if(err){
+            return res.redirect('/dashboard')
+        }
+    })
+    res.redirect('/')
 })
 
 //signup form
