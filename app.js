@@ -25,7 +25,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/blog', ({ useUnifiedTopology: true, useNewUrlParser: true }));
 var db = mongoose.connection;
 db.on('error', console.log.bind(console, "connection error"));
-    console.log("connection succeeded");
+console.log("connection succeeded");
 
 
 
@@ -123,11 +123,11 @@ app.post('/sign_up', function (req, res) {
 
 //trial for dashboard
 app.get('/dashboard', ensureAuthenticated, (req, res) =>
-    User.findOne({email: req.user.email},function(err,result){
-        if(err) throw err;
-        var obd = {dashboard: result};
+    User.findOne({ email: req.user.email }, function (err, result) {
+        if (err) throw err;
+        var obd = { dashboard: result };
         //console.log(result);
-        res.render('dashboard',obd);
+        res.render('dashboard', obd);
     })
 )
 
@@ -185,56 +185,29 @@ app.get('/asia', function (req, res) {
         if (err) throw err;
         //console.log('first result is ' + result);
         //test= {'name': 'cadbury',
-          //          'type': 'candy'};
+        //          'type': 'candy'};
         //var obj = { asia: result };
-        wor=result;
+        wor = result;
         //console.log('wor is ' + wor);
-        
-        
-    })
-    db.collection('user').aggregate([
-        {$project: {
-             result: {$filter: {
-                 input: "$continent",
-                 as: "continent",
-                 cond: {$eq: ["$$continent.continent_name","Asia"]}
-             }},
-             _id: 0,first_name:1
-         }}
-     ]).toArray(function(err,result){
-        if(err) throw err;
-        console.log(result);
-     });
-    //db.collection('users').find({}).toArray(function(err,results){
-        //if(err) throw err;
-        //conb = results;
-        //results.forEach(function(ar){
-            //console.log('ar is');
-            //console.log(ar);
-            /*ar.continent.forEach(function(arr){
-                if(arr.continent_name=='Asia'){
-                    console.log('arr is');
-                    console.log(arr);
-                    if(!conb.includes(arr))
-                    conb.push(arr);
-                 }
-                
-            })*/
-        //})
-        //console.log('results of user : ');
-        //console.log(results);
-        //console.log('wor is ' );
-        //console.log(wor);
-       // console.log('conblog is');
-    //console.log(conb);
-    //console.log(conb.length);
-    //});
-    /*if(wor){
-    res.render('asia', {asia: wor,blogs: conb});
-    }*/
-    //res.sendFile(path.join(__dirname + '/views/asia.html'));
+
+
+    });
+    const filter_Q = { $filter: { input: "$continent", as: "continent", cond: { $eq: ["$$continent.continent_name", "Asia"] } } }
+    User.aggregate([{ $project: { result: filter_Q, "first_name": 1 } }], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.render('asia', {
+                usersArray: result, usersArray2: wor
+            })
+        }
+    });
 
 });
+
+
+
+
 app.get('/europe', function (req, res) {
     db.collection("world").find({ continent: "Europe" }).toArray(function (err, result) {
         if (err) throw err;
@@ -283,14 +256,14 @@ app.get('/samerica', function (req, res) {
 
 app.post('/country', function (req, res) {
     console.log(req.body.country);
-    db.collection('users').find({'continent.blog.country': req.body.country},function(err,result){
-        if(err) throw err;
+    db.collection('users').find({ 'continent.blog.country': req.body.country }, function (err, result) {
+        if (err) throw err;
         console.log(result)
     });
     res.render('country');
 });
 
-app.post('/blogpage',function(req,res){
+app.get('/blogpage', function (req, res) {
     res.render('blog');
 })
 

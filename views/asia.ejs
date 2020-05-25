@@ -80,15 +80,11 @@
             
             <form action="country" method="POST">
               <select name="country">
-                <% if (typeof asia !== 'undefined' && asia.length > 0) {%>
-                <% asia[0].country.forEach(function (op) { %>
+                <% if (typeof usersArray2 !== 'undefined' && usersArray2.length > 0) {%>
+                <% usersArray2[0].country.forEach(function (op) { %>
                 <option value="<%= op %>"><%= op %></option>
                 <% }) %>
-<<<<<<< HEAD
-              
-=======
                 <% } %>
->>>>>>> 561fd4b98aa482c7c9834f83ebf2d1a0f9aa3b39
               </select>
               <input type="submit">
             </form>
@@ -103,9 +99,11 @@
      
       <!-- Grid row -->
       <div class="row">
-        <% if (typeof blogs !== 'undefined' && blogs.length > 0) {%>
-          <% blogs.continent.forEach(function(ar){ %>
-            <% if(ar.continent_name=='Asia'){ %>
+        
+  <% if (typeof usersArray !== 'undefined' && usersArray.length > 0) {%>
+    <%for (var i = 0; i < usersArray.length; i++) { %>
+      <% if(usersArray[i].result.length > 0) { %>
+        <% for(var j=0; j< usersArray[i].result.length ; j++) { %>
         <!-- Grid column -->
         <div class="col-md-4 offset-md-1 mx-3 my-3">
 
@@ -125,19 +123,19 @@
         
         <div class="bl col-md-7 text-md-left ml-3 mt-3">
 
-          <h4 class="h4 mb-4"><%= ar.blog.title %></h4>
+          <h4 class="h4 mb-4"> <%= usersArray[i].result[j].blog[0].title %></h4>
 
-          <p class="font-weight-normal"><%= ar.blog.description %></p>
+          <p class="font-weight-normal"><%= usersArray[i].result[j].blog[0].description %></p>
           <p class="font-weight-normal">by <a><strong>Carine Fox</strong></a>, 19/08/2016</p>
 
           <a class="btn btn-success">Read more</a>
 
         </div>
         <!-- Grid column -->
-        <% } %>
-        <% }) %>
-        <% }) %>
-        <% } %>
+        <%}%>
+       <%}%>
+    <%}%>
+  <%}%>
       </div>
       <!-- Grid row -->
 
