@@ -80,10 +80,15 @@
             
             <form action="country" method="POST">
               <select name="country">
+                <% if (typeof asia !== 'undefined' && asia.length > 0) {%>
                 <% asia[0].country.forEach(function (op) { %>
                 <option value="<%= op %>"><%= op %></option>
                 <% }) %>
+<<<<<<< HEAD
               
+=======
+                <% } %>
+>>>>>>> 561fd4b98aa482c7c9834f83ebf2d1a0f9aa3b39
               </select>
               <input type="submit">
             </form>
@@ -98,8 +103,8 @@
      
       <!-- Grid row -->
       <div class="row">
-        <% blogs.forEach(function(num){ %>
-          <% num.continent.forEach(function(ar){ %>
+        <% if (typeof blogs !== 'undefined' && blogs.length > 0) {%>
+          <% blogs.continent.forEach(function(ar){ %>
             <% if(ar.continent_name=='Asia'){ %>
         <!-- Grid column -->
         <div class="col-md-4 offset-md-1 mx-3 my-3">
@@ -132,6 +137,7 @@
         <% } %>
         <% }) %>
         <% }) %>
+        <% } %>
       </div>
       <!-- Grid row -->
 
