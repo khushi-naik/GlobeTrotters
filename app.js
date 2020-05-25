@@ -192,9 +192,22 @@ app.get('/asia', function (req, res) {
         
         
     })
-    db.collection('users').find({}).toArray(function(err,results){
+    db.collection('user').aggregate([
+        {$project: {
+             result: {$filter: {
+                 input: "$continent",
+                 as: "continent",
+                 cond: {$eq: ["$$continent.continent_name","Asia"]}
+             }},
+             _id: 0,first_name:1
+         }}
+     ]).toArray(function(err,result){
         if(err) throw err;
-        conb = results;
+        console.log(result);
+     });
+    //db.collection('users').find({}).toArray(function(err,results){
+        //if(err) throw err;
+        //conb = results;
         //results.forEach(function(ar){
             //console.log('ar is');
             //console.log(ar);
@@ -215,9 +228,10 @@ app.get('/asia', function (req, res) {
        // console.log('conblog is');
     //console.log(conb);
     //console.log(conb.length);
-    });
-    
+    //});
+    /*if(wor){
     res.render('asia', {asia: wor,blogs: conb});
+    }*/
     //res.sendFile(path.join(__dirname + '/views/asia.html'));
 
 });
@@ -269,7 +283,16 @@ app.get('/samerica', function (req, res) {
 
 app.post('/country', function (req, res) {
     console.log(req.body.country);
+    db.collection('users').find({'continent.blog.country': req.body.country},function(err,result){
+        if(err) throw err;
+        console.log(result)
+    });
+    res.render('country');
 });
+
+app.post('/blogpage',function(req,res){
+    res.render('blog');
+})
 
 
 

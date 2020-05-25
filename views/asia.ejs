@@ -76,12 +76,14 @@
           <!-- Button -->
           <!--Dropdown primary-->
           <div class="dropdown">
-
+            
+            
             <form action="country" method="POST">
               <select name="country">
                 <% asia[0].country.forEach(function (op) { %>
                 <option value="<%= op %>"><%= op %></option>
                 <% }) %>
+              
               </select>
               <input type="submit">
             </form>
