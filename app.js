@@ -197,6 +197,7 @@ app.get('/asia', function (req, res) {
         if (err) {
             console.log(err)
         } else {
+            console.log(result);
             res.render('asia', {
                 usersArray: result, usersArray2: wor
             })
@@ -211,56 +212,121 @@ app.get('/asia', function (req, res) {
 app.get('/europe', function (req, res) {
     db.collection("world").find({ continent: "Europe" }).toArray(function (err, result) {
         if (err) throw err;
-        console.log(result);
-        var obj = { europe: result };
-        res.render('europe', obj);
-    })
+        //console.log(result);
+        //var obj = { europe: result };
+        wor = result;
+    });
+        //res.render('europe', obj);
+        const filter_Q = { $filter: { input: "$continent", as: "continent", cond: { $eq: ["$$continent.continent_name", "Europe"] } } }
+    User.aggregate([{ $project: { result: filter_Q, "first_name": 1 } }], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(result);
+            res.render('europe', {
+                usersArray: result, usersArray2: wor
+            })
+        }
+    });
+    
     //res.sendFile(path.join(__dirname + '/views/europe.html'));
 });
 app.get('/africa', function (req, res) {
     db.collection("world").find({ continent: "Africa" }).toArray(function (err, result) {
         if (err) throw err;
-        console.log(result);
-        var obj = { africa: result };
-        res.render('africa', obj);
-    })
+        wor = result;
+    });
+    const filter_Q = { $filter: { input: "$continent", as: "continent", cond: { $eq: ["$$continent.continent_name", "Africa"] } } }
+    User.aggregate([{ $project: { result: filter_Q, "first_name": 1 } }], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(result);
+            res.render('africa', {
+                usersArray: result, usersArray2: wor
+            })
+        }
+    });
+        //console.log(result);
+        //var obj = { africa: result };
+        //res.render('africa', obj);
     //res.sendFile(path.join(__dirname + '/views/africa.html'));
 });
 app.get('/australia', function (req, res) {
     db.collection("world").find({ continent: "Australia" }).toArray(function (err, result) {
         if (err) throw err;
-        console.log(result);
-        var obj = { australia: result };
-        res.render('australia', obj);
-    })
+        wor = result;
+    });
+    const filter_Q = { $filter: { input: "$continent", as: "continent", cond: { $eq: ["$$continent.continent_name", "Australia"] } } }
+    User.aggregate([{ $project: { result: filter_Q, "first_name": 1 } }], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(result);
+            res.render('australia', {
+                usersArray: result, usersArray2: wor
+            })
+        }
+    });
     //res.sendFile(path.join(__dirname + '/views/australia.html'));
 });
 app.get('/namerica', function (req, res) {
     db.collection("world").find({ continent: "North America" }).toArray(function (err, result) {
         if (err) throw err;
-        console.log(result);
-        var obj = { namerica: result };
-        res.render('namerica', obj);
-    })
+        wor = result;
+    });
+    const filter_Q = { $filter: { input: "$continent", as: "continent", cond: { $eq: ["$$continent.continent_name", "North America"] } } }
+    User.aggregate([{ $project: { result: filter_Q, "first_name": 1 } }], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(result);
+            res.render('namerica', {
+                usersArray: result, usersArray2: wor
+            })
+        }
+    });
     //res.sendFile(path.join(__dirname + '/views/namerica.html'));
 });
 app.get('/samerica', function (req, res) {
     db.collection("world").find({ continent: "South America" }).toArray(function (err, result) {
         if (err) throw err;
-        console.log(result);
-        var obj = { samerica: result };
-        res.render('samerica', obj);
-    })
+        wor = result;
+    });
+    const filter_Q = { $filter: { input: "$continent", as: "continent", cond: { $eq: ["$$continent.continent_name", "South America"] } } }
+    User.aggregate([{ $project: { result: filter_Q, "first_name": 1 } }], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(result);
+            res.render('samerica', {
+                usersArray: result, usersArray2: wor
+            })
+        }
+    });
     //res.sendFile(path.join(__dirname + '/views/samerica.html'));
 });
 
 app.post('/country', function (req, res) {
     console.log(req.body.country);
-    db.collection('users').find({ 'continent.blog.country': req.body.country }, function (err, result) {
-        if (err) throw err;
-        console.log(result)
-    });
-    res.render('country');
+    var c = req.body.country;
+    /*User.aggregate([{$project:{continent:{$filter:{input:"$continent",as:"continent",cond:{$eq:["$$continent.continent_name","Asia"]}}},"first_name":1}}],function(err,result){
+        if(err) throw err;
+        console.log("countriiiiiiiiiiiiiii");
+        console.log(result);
+
+    });*/
+    User.aggregate([{$project:{result:{$filter:{input:"$continent",as:"continent",cond:{$eq:["$$continent.blog.country",c]}}},"first_name":1}}],function(err,result){
+        if(err) throw err;
+        console.log("countriiii selected blog");
+        console.log("countriiii selected blog00");
+        console.log(result[0].continent,result[0].first_name);
+        console.log("countriiii selected blog11");
+        console.log(result[1].continent,result[1].first_name);
+        res.render('country',{usersArray: result,country_name:c});
+    })
+    
+   
 });
 
 app.get('/blogpage', function (req, res) {
@@ -275,5 +341,5 @@ app.get('/blogpage', function (req, res) {
 
 app.listen(3000, function () {
     console.log("connected to server 3000");
-})
+});
 

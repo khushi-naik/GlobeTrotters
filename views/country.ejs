@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <title>Dashboard | GlobeTrotters</title>
+  <title>Country | GlobeTrotters</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!--<link href="images/land.css" type="text/css" rel="stylesheet">-->
@@ -17,8 +17,8 @@
   <link rel="stylesheet" href="images/land.css">
   <style>
     .view {
-        background: url("https://images.pexels.com/photos/672358/pexels-photo-672358.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")no-repeat center center;
-        background-size: cover;
+      background: url("https://images.pexels.com/photos/672358/pexels-photo-672358.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")no-repeat center center;
+      background-size: cover;
     }
 
     header {
@@ -29,7 +29,7 @@
       height: 94%;
     }
 
-    .bl{
+    .bl {
       margin-top: 9px;
     }
   </style>
@@ -74,11 +74,13 @@
         <div class="mask rgba-black-light flex-center">
           <div class="container text-center white-text">
             <div class="offset-1 white-text text-center pt-5 row">
-                <h1 style="font-size: 75;">Switzerland</h1>
               
+              <h1 style="font-size: 75;"><%= country_name %></h1>
+
+
               <div>
-                
-              </div>  
+
+              </div>
             </div>
           </div>
         </div>
@@ -88,58 +90,85 @@
   </header>
 
   <div class="container">
-
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
-          aria-controls="pills-home" aria-selected="true">My Wall</a>
+        <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all"
+          aria-selected="true">All</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="pills-profile-tab" href="/newblog" role="tab"
-          aria-controls="pills-profile" aria-selected="false">Add Blog</a>
+        <a class="nav-link" id="history-tab" data-toggle="tab" href="#history" role="tab" aria-controls="history"
+          aria-selected="false">History</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="food-tab" data-toggle="tab" href="#food" role="tab" aria-controls="food"
+          aria-selected="false">Food</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="things-tab" data-toggle="tab" href="#things" role="tab" aria-controls="things"
+          aria-selected="false">Things to do</a>
       </li>
     </ul>
-    <!--/.Navbar-->
-    <div class="row">
-
-      <!-- Card Wider -->
-     
-      <!-- Card -->
-      <div class="bl card col-md-4 h-100">
-
-        <!-- Card image -->
-        <div class="view overlay">
-          <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
-            alt="Card image cap">
-          <a href="#!">
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
-
-        <!-- Card content -->
-        <div class="card-body">
-
-          <!-- Title -->
-          <h4 class="card-title">walliii</h4>
-          <!-- Text -->
-          <p class="card-text">blaaahhs</p>
-          <!-- Button -->
-          <a href="#" class="btn btn-primary">Read More <i class="fas fa-angle-double-right"></i></a>
-
-        </div>
-
-      </div>
-      <!-- Card -->
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+        <div class="row">
+        
+          <% if (typeof usersArray !== 'undefined' && usersArray.length > 0) {%>
+            <%for (var i = 0; i < usersArray.length; i++) { %>
+              <% if(usersArray[i].result.length > 0) { %>
+                <% for(var j=0; j< usersArray[i].result.length ; j++) { %>
+              <!-- Grid column -->
+              <div class="col-md-4 offset-md-1 mx-3 my-3">
       
+                <!-- Featured image -->
+                <div class="view overlay">
+                  <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid"
+                    alt="Sample image for first version of blog listing">
+                  <a>
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                </div>
       
+              </div>
+              <!-- Grid column -->
+      
+              <!-- Grid column -->
+              
+              <div class="bl col-md-7 text-md-left ml-3 mt-3">
+      
+                <h4 class="h4 mb-4"> <%= usersArray[i].result[j].blog.title %> </h4>
+      
+                <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
+                <p class="font-weight-normal">by <a><strong>Carine Fox</strong></a>, 19/08/2016</p>
+      
+                <a class="btn btn-success">Read more</a>
+      
+              </div>
+              <!-- Grid column -->
+              <%}%>
+      <%}%>
+    <%}%>
+  <% } %>
+            </div></div>
+      <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">Food truck fixie
+        locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit,
+        blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee.
+        Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum
+        PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS
+        salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit,
+        sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
+        stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</div>
+      <div class="tab-pane fade" id="food" role="tabpanel" aria-labelledby="food-tab">Etsy mixtape
+        wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack
+        lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard
+        locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify
+        squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie
+        etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog
+        stumptown. Pitchfork sustainable tofu synth chambray yr.</div>
+        <div class="tab-pane fade" id="things" role="tabpanel" aria-labelledby="things-tab">hellooooooo</div>
     </div>
-
-    <!-- Card Light -->
-
-    <!-- Card Light -->
   </div>
 
-  </div>
+
 
 
 

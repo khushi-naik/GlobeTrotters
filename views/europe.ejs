@@ -73,9 +73,11 @@
           <div class="dropdown">
             <form action="country" method="POST">
               <select name="country">
-                <% europe[0].country.forEach(function (op) { %>
+                <% if (typeof usersArray2 !== 'undefined' && usersArray2.length > 0) {%>
+                  <% usersArray2[0].country.forEach(function (op) { %>
                 <option value="<%= op %>"><%= op %></option>
                 <% }) %>
+                <% } %>
               </select>
               <input type="submit">
             </form>
@@ -90,7 +92,10 @@
 
       <!-- Grid row -->
       <div class="row">
-
+        <% if (typeof usersArray !== 'undefined' && usersArray.length > 0) {%>
+          <%for (var i = 0; i < usersArray.length; i++) { %>
+            <% if(usersArray[i].result.length > 0) { %>
+              <% for(var j=0; j< usersArray[i].result.length ; j++) { %>
         <!-- Grid column -->
         <div class="col-md-4 offset-md-1 mx-3 my-3">
 
@@ -114,18 +119,19 @@
             <h6 class="h6 pb-1"><i class="fas fa-desktop pr-1"></i> Work</h6>
           </a>
 
-          <h4 class="h4 mb-4">This is title of the news</h4>
+          <h4 class="h4 mb-4"><%= usersArray[i].result[j].blog.title %></h4>
 
-          <p class="font-weight-normal">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-            doloremque, totam
-            rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</p>
+          <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
           <p class="font-weight-normal">by <a><strong>Carine Fox</strong></a>, 19/08/2016</p>
 
           <a class="btn btn-success">Read more</a>
 
         </div>
         <!-- Grid column -->
+        <%}%>
+       <%}%>
+    <%}%>
+  <%}%>
 
       </div>
       <!-- Grid row -->

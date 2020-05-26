@@ -14,7 +14,11 @@
   <!-- Material Design Bootstrap -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/css/mdb.min.css" rel="stylesheet">
   <link href="images/land.css" type="text/css" rel="stylesheet">
-
+  <style>
+    .bl{
+      margin-top: 9px;
+    }
+  </style>
 
 </head>
 
@@ -48,16 +52,18 @@
     </div>
   </nav>
   <br>
+ 
   <div class="container">
     <div class="row justify-content-center">
       <div style="border-radius: 7px;" class="jumbotron p-0 col-md-11">
+
         <!-- Card image -->
-        <div class="view overlay rounded-top">
-          <img src="images/namerica.jpeg" class="img-fluid" alt="Sample image">
-          <a href="#">
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
+        <!-- <div class="view overlay rounded-top"> -->
+        <img src="/images/namerica.jpeg" class="img-fluid" alt="Sample image">
+        <a href="#">
+          <div class="mask rgba-white-slight"></div>
+        </a>
+        <!-- </div> -->
 
         <!-- Card content -->
         <div class="card-body text-center mb-3">
@@ -70,126 +76,120 @@
           <!-- Button -->
           <!--Dropdown primary-->
           <div class="dropdown">
+            
+            
             <form action="country" method="POST">
               <select name="country">
-                <% namerica[0].country.forEach(function (op) { %>
+                <% if (typeof usersArray2 !== 'undefined' && usersArray2.length > 0) {%>
+                <% usersArray2[0].country.forEach(function (op) { %>
                 <option value="<%= op %>"><%= op %></option>
                 <% }) %>
+                <% } %>
               </select>
               <input type="submit">
             </form>
           </div>
           <!--/Dropdown primary-->
-
         </div>
-      </div>
-
-
-      <div class="jumbotron text-center hoverable p-4">
-
-        <!-- Grid row -->
-        <div class="row">
-
-          <!-- Grid column -->
-          <div class="col-md-4 offset-md-1 mx-3 my-3">
-
-            <!-- Featured image -->
-            <div class="view overlay">
-              <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid"
-                alt="Sample image for first version of blog listing">
-              <a>
-                <div class="mask rgba-white-slight"></div>
-              </a>
-            </div>
-
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-md-7 text-md-left ml-3 mt-3">
-
-            <!-- Excerpt -->
-            <a href="#!" class="green-text">
-              <h6 class="h6 pb-1"><i class="fas fa-desktop pr-1"></i> Work</h6>
-            </a>
-
-<<<<<<< HEAD
-            <h4 class="h4 mb-4">This is title of the news</h4>
-
-            <p class="font-weight-normal">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-              doloremque, totam
-              rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</p>
-            <p class="font-weight-normal">by <a><strong>Carine Fox</strong></a>, 19/08/2016</p>
-=======
-  </div>
-  </div>
-</div>
-  <footer class="page-footer center-on-small-only" id="foot">
->>>>>>> c030f20f4156363d3daae8438c136997918a8ed3
-
-            <a class="btn btn-success">Read more</a>
-
-          </div>
-          <!-- Grid column -->
-
-        </div>
-        <!-- Grid row -->
 
       </div>
-      <!-- News jumbotron -->
-
     </div>
 
-    <footer class="page-footer font-small pt-4">
+    <div class="jumbotron text-center hoverable p-4">
+     
+      <!-- Grid row -->
+      <div class="row">
+        
+  <% if (typeof usersArray !== 'undefined' && usersArray.length > 0) {%>
+    <%for (var i = 0; i < usersArray.length; i++) { %>
+      <% if(usersArray[i].result.length > 0) { %>
+        <% for(var j=0; j< usersArray[i].result.length ; j++) { %>
+        <!-- Grid column -->
+        <div class="col-md-4 offset-md-1 mx-3 my-3">
 
-      <!--Footer Links-->
-      <div class="container-fluid">
-        <div class="row">
-
-          <!--First column-->
-          <div class="col-md-4">
-            <h1>GlobeTrotters.</h1>
-
+          <!-- Featured image -->
+          <div class="view overlay">
+            <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid"
+              alt="Sample image for first version of blog listing">
+            <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
           </div>
-          <!--/.First column-->
 
-          <!--Second column-->
-          <div class="col-md-4">
-
-            <ul>
-              <li><a href="/#About-us">About Us</a></li>
-              <li><a href="/destination">Destinations</a></li>
-              <li><a href="/#FAQs">FAQs</a></li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <h4>Contact Us</h4>
-            <p><i class="fa fa-mobile" aria-hidden="true"></i> 1234567890
-              <br><i class="fa fa-phone" aria-hidden="true"></i> 0987654321
-              <br><a href="mailto:globetrotters@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i>
-                globetrotters@gmail.com</a></p>
-          </div>
-          <!--/.Second column-->
         </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        
+        <div class="bl col-md-7 text-md-left ml-3 mt-3">
+
+          <h4 class="h4 mb-4"> <%= usersArray[i].result[j].blog.title %></h4>
+
+          <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
+          <p class="font-weight-normal">by <a><strong>Carine Fox</strong></a>, 19/08/2016</p>
+
+          <a class="btn btn-success">Read more</a>
+
+        </div>
+        <!-- Grid column -->
+        <%}%>
+       <%}%>
+    <%}%>
+  <%}%>
       </div>
-      <div class="footer-copyright text-center py-3"> Made with <i class="far fa-heart"></i> by GlobeTrotters
+      <!-- Grid row -->
+
+    </div>
+    <!-- News jumbotron -->
+  </div>
+  <footer class="page-footer font-small pt-4">
+
+    <!--Footer Links-->
+    <div class="container-fluid">
+      <div class="row">
+
+        <!--First column-->
+        <div class="col-md-4">
+          <h1>GlobeTrotters.</h1>
+
+        </div>
+        <!--/.First column-->
+
+        <!--Second column-->
+        <div class="col-md-4">
+
+          <ul>
+            <li><a href="/#About-us">About Us</a></li>
+            <li><a href="/destination">Destinations</a></li>
+            <li><a href="/#FAQs">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h4>Contact Us</h4>
+          <p><i class="fa fa-mobile" aria-hidden="true"></i> 1234567890
+            <br><i class="fa fa-phone" aria-hidden="true"></i> 0987654321
+            <br><a href="mailto:globetrotters@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i>
+              globetrotters@gmail.com</a></p>
+        </div>
+        <!--/.Second column-->
       </div>
-    </footer>
-    <!--/.Footer-->
+    </div>
+    <div class="footer-copyright text-center py-3"> Made with <i class="far fa-heart"></i> by GlobeTrotters
+    </div>
+  </footer>
+  <!--/.Footer-->
 
 
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/js/mdb.min.js"></script>
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/js/mdb.min.js"></script>
 
 </body>
 
