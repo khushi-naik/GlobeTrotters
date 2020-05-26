@@ -316,13 +316,13 @@ app.post('/country', function (req, res) {
         console.log(result);
 
     });*/
-    User.aggregate([{$project:{result:{$filter:{input:"$continent",as:"continent",cond:{$eq:["$$continent.blog.country",c]}}},"first_name":1}}],function(err,result){
+    User.aggregate([{$project:{result:{$filter:{input:"$continent",as:"continent",cond:{$eq:["$$continent.blog.country",c]}}},"first_name":1,"last_name":1,"email":1}}],function(err,result){
         if(err) throw err;
-        console.log("countriiii selected blog");
-        console.log("countriiii selected blog00");
-        console.log(result[0].continent,result[0].first_name);
-        console.log("countriiii selected blog11");
-        console.log(result[1].continent,result[1].first_name);
+        //console.log("countriiii selected blog");
+        //console.log("countriiii selected blog00");
+        //console.log(result[0].continent,result[0].first_name);
+        //console.log("countriiii selected blog11");
+        //console.log(result[1].continent,result[1].first_name);
         res.render('country',{usersArray: result,country_name:c});
     })
     
@@ -330,6 +330,8 @@ app.post('/country', function (req, res) {
 });
 
 app.get('/blogpage', function (req, res) {
+    console.log(req.body.blogTitle);
+    console.log(req.body.blogEmail);
     res.render('blog');
 })
 

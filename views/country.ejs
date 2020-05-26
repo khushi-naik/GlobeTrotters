@@ -32,6 +32,10 @@
     .bl {
       margin-top: 9px;
     }
+
+    input .name{
+      border: none;
+    }
   </style>
 
 </head>
@@ -74,7 +78,7 @@
         <div class="mask rgba-black-light flex-center">
           <div class="container text-center white-text">
             <div class="offset-1 white-text text-center pt-5 row">
-              
+
               <h1 style="font-size: 75;"><%= country_name %></h1>
 
 
@@ -111,60 +115,189 @@
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
         <div class="row">
-        
+
           <% if (typeof usersArray !== 'undefined' && usersArray.length > 0) {%>
-            <%for (var i = 0; i < usersArray.length; i++) { %>
-              <% if(usersArray[i].result.length > 0) { %>
-                <% for(var j=0; j< usersArray[i].result.length ; j++) { %>
-              <!-- Grid column -->
-              <div class="col-md-4 offset-md-1 mx-3 my-3">
-      
-                <!-- Featured image -->
-                <div class="view overlay">
-                  <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid"
-                    alt="Sample image for first version of blog listing">
-                  <a>
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-      
-              </div>
-              <!-- Grid column -->
-      
-              <!-- Grid column -->
-              
-              <div class="bl col-md-7 text-md-left ml-3 mt-3">
-      
-                <h4 class="h4 mb-4"> <%= usersArray[i].result[j].blog.title %> </h4>
-      
-                <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
-                <p class="font-weight-normal">by <a><strong>Carine Fox</strong></a>, 19/08/2016</p>
-      
-                <a class="btn btn-success">Read more</a>
-      
-              </div>
-              <!-- Grid column -->
-              <%}%>
+          <%for (var i = 0; i < usersArray.length; i++) { %>
+          <% if(usersArray[i].result.length > 0) { %>
+          <% for(var j=0; j< usersArray[i].result.length ; j++) { %>
+          <!-- Grid column -->
+          <div class="col-md-4 offset-md-1 mx-3 my-3">
+
+            <!-- Featured image -->
+            <div class="view overlay">
+              <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid"
+                alt="Sample image for first version of blog listing">
+              <a>
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+
+          <div class="bl col-md-7 text-md-left ml-3 mt-3">
+            <form action="blogpage" method="GET">
+            <h4 class="h4 mb-4"><input style="border: none;" name="blogTitle" value="<%= usersArray[i].result[j].blog.title %>" readonly> </h4>
+
+            <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
+            <p class="font-weight-normal">by <a><strong><%= usersArray[i].first_name %> <%= usersArray[i].last_name %></strong></a>
+              <br><input style="border:none;" name="blogEmail" value="<%= usersArray[i].email %>"></p>
+            <button type="submit" class="btn btn-success">Read more</button>
+              </form>
+          </div>
+          <!-- Grid column -->
+          <%}%>
       <%}%>
-    <%}%>
+          <%}%>
   <% } %>
-            </div></div>
-      <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">Food truck fixie
-        locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit,
-        blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee.
-        Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum
-        PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS
-        salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit,
-        sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
-        stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</div>
-      <div class="tab-pane fade" id="food" role="tabpanel" aria-labelledby="food-tab">Etsy mixtape
-        wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack
-        lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard
-        locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify
-        squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie
-        etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog
-        stumptown. Pitchfork sustainable tofu synth chambray yr.</div>
-        <div class="tab-pane fade" id="things" role="tabpanel" aria-labelledby="things-tab">hellooooooo</div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+        <div class="row">
+
+          <% if (typeof usersArray !== 'undefined' && usersArray.length > 0) {%>
+          <%for (var i = 0; i < usersArray.length; i++) { %>
+          <% if(usersArray[i].result.length > 0) { %>
+          <% for(var j=0; j< usersArray[i].result.length ; j++) { %>
+          <% for(var k=0; k< usersArray[i].result[j].blog.category.length ; k++) { %>
+          <% if(usersArray[i].result[j].blog.category[k]=='History') { %>
+          <!-- Grid column -->
+          <div class="col-md-4 offset-md-1 mx-3 my-3">
+
+            <!-- Featured image -->
+            <div class="view overlay">
+              <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid"
+                alt="Sample image for first version of blog listing">
+              <a>
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+
+          <div class="bl col-md-7 text-md-left ml-3 mt-3">
+
+            <form action="blogpage" method="GET">
+              <h4 class="h4 mb-4"><input style="border: none;" name="blogTitle" value="<%= usersArray[i].result[j].blog.title %>" readonly> </h4>
+  
+              <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
+              <p class="font-weight-normal">by <a><strong><%= usersArray[i].first_name %> <%= usersArray[i].last_name %></strong></a>
+                <br><input style="border:none;" name="blogEmail" value="<%= usersArray[i].email %>"></p>
+              <button type="submit" class="btn btn-success">Read more</button>
+                </form>
+
+          </div>
+          <!-- Grid column -->
+          <% break;}%>
+
+          <%}%>
+            <%}%>
+          <%}%>
+  <%}%>
+          <% } %>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="food" role="tabpanel" aria-labelledby="food-tab">
+        <div class="row">
+
+          <% if (typeof usersArray !== 'undefined' && usersArray.length > 0) {%>
+          <%for (var i = 0; i < usersArray.length; i++) { %>
+          <% if(usersArray[i].result.length > 0) { %>
+          <% for(var j=0; j< usersArray[i].result.length ; j++) { %>
+          <% for(var k=0; k< usersArray[i].result[j].blog.category.length ; k++) { %>
+          <% if(usersArray[i].result[j].blog.category[k]=='Food') { %>
+          <!-- Grid column -->
+          <div class="col-md-4 offset-md-1 mx-3 my-3">
+
+            <!-- Featured image -->
+            <div class="view overlay">
+              <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid"
+                alt="Sample image for first version of blog listing">
+              <a>
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+
+          <div class="bl col-md-7 text-md-left ml-3 mt-3">
+
+            <form action="blogpage" method="GET">
+              <h4 class="h4 mb-4"><input style="border: none;" name="blogTitle" value="<%= usersArray[i].result[j].blog.title %>" readonly> </h4>
+  
+              <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
+              <p class="font-weight-normal">by <a><strong><%= usersArray[i].first_name %> <%= usersArray[i].last_name %></strong></a>
+                <br><input style="border:none;" name="blogEmail" value="<%= usersArray[i].email %>"></p>
+              <button type="submit" class="btn btn-success">Read more</button>
+                </form>
+
+          </div>
+          <!-- Grid column -->
+          <% break;}%>
+
+          <%}%>
+            <%}%>
+          <%}%>
+  <%}%>
+          <% } %>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="things" role="tabpanel" aria-labelledby="things-tab">
+        <div class="row">
+
+          <% if (typeof usersArray !== 'undefined' && usersArray.length > 0) {%>
+          <%for (var i = 0; i < usersArray.length; i++) { %>
+          <% if(usersArray[i].result.length > 0) { %>
+          <% for(var j=0; j< usersArray[i].result.length ; j++) { %>
+          <% for(var k=0; k< usersArray[i].result[j].blog.category.length ; k++) { %>
+          <% if(usersArray[i].result[j].blog.category[k]=='Others') { %>
+          <!-- Grid column -->
+          <div class="col-md-4 offset-md-1 mx-3 my-3">
+
+            <!-- Featured image -->
+            <div class="view overlay">
+              <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid"
+                alt="Sample image for first version of blog listing">
+              <a>
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+
+          <div class="bl col-md-7 text-md-left ml-3 mt-3">
+            
+            <form action="blogpage" method="GET">
+              <h4 class="h4 mb-4"><input style="border: none;" name="blogTitle" value="<%= usersArray[i].result[j].blog.title %>" readonly> </h4>
+  
+              <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
+              <p class="font-weight-normal">by <a><strong><%= usersArray[i].first_name %> <%= usersArray[i].last_name %></strong></a>
+                <br><input style="border:none;" name="blogEmail" value="<%= usersArray[i].email %>"></p>
+              <button type="submit" class="btn btn-success">Read more</button>
+                </form>
+
+          </div>
+          <!-- Grid column -->
+          <% break;}%>
+
+          <%}%>
+              <%}%>
+          <%}%>
+    <%}%>
+          <% } %>
+        </div>
+      </div>
     </div>
   </div>
 
