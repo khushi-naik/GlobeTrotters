@@ -193,7 +193,7 @@ app.get('/asia', function (req, res) {
 
     });
     const filter_Q = { $filter: { input: "$continent", as: "continent", cond: { $eq: ["$$continent.continent_name", "Asia"] } } }
-    User.aggregate([{ $project: { result: filter_Q, "first_name": 1 } }], (err, result) => {
+    User.aggregate([{ $project: { result: filter_Q, "first_name": 1,"last_name":1,"email":1 } }], (err, result) => {
         if (err) {
             console.log(err)
         } else {
@@ -218,7 +218,7 @@ app.get('/europe', function (req, res) {
     });
         //res.render('europe', obj);
         const filter_Q = { $filter: { input: "$continent", as: "continent", cond: { $eq: ["$$continent.continent_name", "Europe"] } } }
-    User.aggregate([{ $project: { result: filter_Q, "first_name": 1 } }], (err, result) => {
+    User.aggregate([{ $project: { result: filter_Q, "first_name": 1,"last_name":1,"email":1 } }], (err, result) => {
         if (err) {
             console.log(err)
         } else {
@@ -237,7 +237,7 @@ app.get('/africa', function (req, res) {
         wor = result;
     });
     const filter_Q = { $filter: { input: "$continent", as: "continent", cond: { $eq: ["$$continent.continent_name", "Africa"] } } }
-    User.aggregate([{ $project: { result: filter_Q, "first_name": 1 } }], (err, result) => {
+    User.aggregate([{ $project: { result: filter_Q, "first_name": 1,"last_name":1,"email":1 } }], (err, result) => {
         if (err) {
             console.log(err)
         } else {
@@ -258,7 +258,7 @@ app.get('/australia', function (req, res) {
         wor = result;
     });
     const filter_Q = { $filter: { input: "$continent", as: "continent", cond: { $eq: ["$$continent.continent_name", "Australia"] } } }
-    User.aggregate([{ $project: { result: filter_Q, "first_name": 1 } }], (err, result) => {
+    User.aggregate([{ $project: { result: filter_Q, "first_name": 1,"last_name":1,"email":1 } }], (err, result) => {
         if (err) {
             console.log(err)
         } else {
@@ -276,7 +276,7 @@ app.get('/namerica', function (req, res) {
         wor = result;
     });
     const filter_Q = { $filter: { input: "$continent", as: "continent", cond: { $eq: ["$$continent.continent_name", "North America"] } } }
-    User.aggregate([{ $project: { result: filter_Q, "first_name": 1 } }], (err, result) => {
+    User.aggregate([{ $project: { result: filter_Q, "first_name": 1,"last_name":1,"email":1 } }], (err, result) => {
         if (err) {
             console.log(err)
         } else {
@@ -294,7 +294,7 @@ app.get('/samerica', function (req, res) {
         wor = result;
     });
     const filter_Q = { $filter: { input: "$continent", as: "continent", cond: { $eq: ["$$continent.continent_name", "South America"] } } }
-    User.aggregate([{ $project: { result: filter_Q, "first_name": 1 } }], (err, result) => {
+    User.aggregate([{ $project: { result: filter_Q, "first_name": 1,"last_name":1,"email":1 } }], (err, result) => {
         if (err) {
             console.log(err)
         } else {
@@ -329,10 +329,41 @@ app.post('/country', function (req, res) {
    
 });
 
-app.get('/blogpage', function (req, res) {
+app.post('/blogpage', function (req, res) {
     console.log(req.body.blogTitle);
     console.log(req.body.blogEmail);
-    res.render('blog');
+    var title = req.body.blogTitle;
+    var ema= req.body.blogEmail;
+    var blobj;
+    User.aggregate([{$match: {email: ema}},{$project:{result:{$filter:{input:"$continent",as:"continent",cond:{$eq:["$$continent.blog.title",title]}}},"first_name":1,"last_name":1,"email":1}}],function(err,result){
+        if(err) throw err;
+        console.log(result);
+        res.render('blog',{blogArray: result});
+        //console.log("countriiii selected blog");
+        //console.log("countriiii selected blog00");
+        //console.log(result[0].continent,result[0].first_name);
+        //console.log("countriiii selected blog11");
+        //console.log(result[1].continent,result[1].first_name);
+        //res.render('country',{usersArray: result,country_name:c});
+    })
+    /*User.aggregate([{$project:{result:{$filter:{input:"continent",as:"continent",cond:{$eq:["$$continent.blog.title",title]}}},"first_name":1,"last_name":1,"email":1}}],function(err,result){
+        if(err) throw err;
+        console.log(result);
+    })*/
+    /*User.find({email: req.body.blogEmail},function(err,result){
+        if(err) throw err;
+        console.log(result);
+        for(var i=0;i<result[0].continent.length;i++){
+            if(result[0].continent[i].blog.title == title){
+                blobj = result[0].continent[i].blog;
+                console.log(blobj);
+                break;
+            }
+
+        }
+    })
+    
+    res.render('blog',{userBlog: blobj});*/
 })
 
 

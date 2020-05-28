@@ -78,7 +78,7 @@
                 src="https://cdn4.iconfinder.com/data/icons/occupation-and-people-avatar-vol-1-1/128/Woman_avatar_assistant_young_people_female_girl-512.png"/>
               <div>
                 <h2>  <%= dashboard.first_name %> <%= dashboard.last_name %> </h2>
-                <p>  <%= dashboard.email %> </p>
+                <p>  <!--<input form="formBlog" style="border:none;" name="blogEmail" value="<%= dashboard.email %>"> --></p>
               </div>  
             </div>
           </div>
@@ -157,13 +157,14 @@
 
         <!-- Card content -->
         <div class="card-body">
-
+          <form action="blogpage" method="POST" id="formBlog">
           <!-- Title -->
-          <h4 class="card-title"><%= wall.blog.title %></h4>
+          <h4 class="card-title"><input style="border: none;" name="blogTitle" value="<%= wall.blog.title %>" readonly></h4>
           <!-- Text -->
-          <p class="card-text"><%= wall.blog.description %></p>
+          <p class="card-text"><%= wall.blog.description %><br><input style="border:none;" name="blogEmail" value="<%= dashboard.email %>"></p>
           <!-- Button -->
-          <a href="#" class="btn btn-primary">Read More <i class="fas fa-angle-double-right"></i></a>
+          <button type="submit" class="btn btn-success">Read more  <i class="fas fa-angle-double-right"></i></button>
+          </form>
 
         </div>
 

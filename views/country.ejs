@@ -33,9 +33,7 @@
       margin-top: 9px;
     }
 
-    input .name{
-      border: none;
-    }
+    
   </style>
 
 </head>
@@ -138,7 +136,7 @@
           <!-- Grid column -->
 
           <div class="bl col-md-7 text-md-left ml-3 mt-3">
-            <form action="blogpage" method="GET">
+            <form action="blogpage" method="POST">
             <h4 class="h4 mb-4"><input style="border: none;" name="blogTitle" value="<%= usersArray[i].result[j].blog.title %>" readonly> </h4>
 
             <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
@@ -182,7 +180,7 @@
 
           <div class="bl col-md-7 text-md-left ml-3 mt-3">
 
-            <form action="blogpage" method="GET">
+            <form action="blogpage" method="POST">
               <h4 class="h4 mb-4"><input style="border: none;" name="blogTitle" value="<%= usersArray[i].result[j].blog.title %>" readonly> </h4>
   
               <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
@@ -230,7 +228,7 @@
 
           <div class="bl col-md-7 text-md-left ml-3 mt-3">
 
-            <form action="blogpage" method="GET">
+            <form action="blogpage" method="POST">
               <h4 class="h4 mb-4"><input style="border: none;" name="blogTitle" value="<%= usersArray[i].result[j].blog.title %>" readonly> </h4>
   
               <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
@@ -278,7 +276,7 @@
 
           <div class="bl col-md-7 text-md-left ml-3 mt-3">
             
-            <form action="blogpage" method="GET">
+            <form action="blogpage" method="POST">
               <h4 class="h4 mb-4"><input style="border: none;" name="blogTitle" value="<%= usersArray[i].result[j].blog.title %>" readonly> </h4>
   
               <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
