@@ -27,9 +27,11 @@ const userschema = mongoose.Schema({
             trim: true
         },
         blog: {
+            data: [{
+                type: String
+            }],
             country: {
                 type: String,
-                trim: true
             },
             title: {
                 type: String
@@ -43,11 +45,8 @@ const userschema = mongoose.Schema({
             content: {
                 type: String
             }
-
         }
-
     }]
-
 });
 
 
