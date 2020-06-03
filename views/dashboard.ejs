@@ -14,6 +14,8 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/css/mdb.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <link rel="stylesheet" href="images/land.css">
   <style>
     .view {
@@ -134,23 +136,24 @@
   </div>-->
   <div class="container">
 
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <ul class="nav nav-pills d-flex justify-content-center mb-3" id="pills-tab" role="tablist">
       <li class="nav-item">
         <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
-          aria-controls="pills-home" aria-selected="true">My Wall</a>
+          aria-controls="pills-home" aria-selected="true"><i class="fas fa-desktop mr-2"></i>My Wall</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="pills-profile-tab" href="/newblog" role="tab"
-          aria-controls="pills-profile" aria-selected="false">Add Blog</a>
+          aria-controls="pills-profile" aria-selected="false"><i class="far fa-edit mr-2"></i>Add Blog</a>
       </li>
     </ul>
     <!--/.Navbar-->
-    <div class="row">
+    <div class="row offset-1">
 
       <!-- Card Wider -->
       <% dashboard.continent.forEach(function (wall) { %>
       <!-- Card -->
-      <div class="bl card col-md-4 h-100">
+      <div data-aos="fade-up"
+      data-aos-duration="3000" class="bl card col-md-5 m-4 h-100">
 
         <!-- Card image -->
         <div class="view overlay">
@@ -230,6 +233,9 @@
     <!-- Copyright -->
 
   </footer>
+  <script>
+    AOS.init();
+  </script>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
