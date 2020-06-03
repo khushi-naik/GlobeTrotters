@@ -43,15 +43,20 @@
                     <a class="nav-link" href="/#FAQs">FAQs</a>
                 </li>
                 <% if(user){%>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">Logout</a>
-                    </li>
-                    <% } else { %>  
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
-                    <% } %>
-            
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Login</a>
+                </li>
+                <% } %>
+                <% if(user){%>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                </li>
+                <% } %>
+
             </ul>
 
 

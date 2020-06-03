@@ -58,9 +58,15 @@
           <li class="nav-item">
             <a class="nav-link" href="/#FAQs">FAQs</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/logout">Logout</a>
-          </li>
+          <% if(user){%>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+            <% } else { %>  
+            <li class="nav-item">
+              <a class="nav-link" href="/">Login</a>
+            </li>
+            <% } %>
         </ul>
 
       </div>
@@ -148,8 +154,11 @@
 
         <!-- Card image -->
         <div class="view overlay">
-          <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
-            alt="Card image cap">
+          <% if(typeof wall.blog.data !== 'undefined' && wall.blog.data.length > 0){ %>
+            <img src="data:image/png;base64,<%= wall.blog.data[0] %>" class="img-fluid" alt="Sample image for first version of blog listing">
+            <%} else{ %>
+              <img src="https://images.pexels.com/photos/2419865/pexels-photo-2419865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid" alt="Sample image for first version of blog listing">
+            <%}%>
           <a href="#!">
             <div class="mask rgba-white-slight"></div>
           </a>
@@ -199,9 +208,9 @@
         <div class="col-md-4">
 
           <ul>
-            <li><a href="#!">About Us</a></li>
-            <li><a href="#!">Destinations</a></li>
-            <li><a href="#!">FAQs</a></li>
+            <li><a href="/#About-us">About Us</a></li>
+            <li><a href="/destination">Destinations</a></li>
+            <li><a href="/#FAQs">FAQs</a></li>
           </ul>
         </div>
         <div class="col-md-4">

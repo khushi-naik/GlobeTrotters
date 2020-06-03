@@ -15,113 +15,139 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <style>
         .files input {
-        outline: 2px dashed #92b0b3;
-        outline-offset: -10px;
-        -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-        transition: outline-offset .15s ease-in-out, background-color .15s linear;
-        padding: 120px 0px 85px 35%;
-        text-align: center !important;
-        margin: 0;
-        width: 100% !important;
+            outline: 2px dashed #92b0b3;
+            outline-offset: -10px;
+            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            padding: 120px 0px 85px 35%;
+            text-align: center !important;
+            margin: 0;
+            width: 100% !important;
         }
-        .files input:focus{     outline: 2px dashed #92b0b3;  outline-offset: -10px;
-        -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-        transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #92b0b3;
+
+        .files input:focus {
+            outline: 2px dashed #92b0b3;
+            outline-offset: -10px;
+            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            border: 1px solid #92b0b3;
         }
-        .files{ position:relative}
-        .files:after {  pointer-events: none;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 50px;
-        right: 0;
-        height: 56px;
-        content: "";
-        background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
-        display: block;
-        margin: 0 auto;
-        background-size: 100%;
-        background-repeat: no-repeat;
+
+        .files {
+            position: relative
         }
-        .color input{ background-color:#f1f1f1;}
+
+        .files:after {
+            pointer-events: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 50px;
+            right: 0;
+            height: 56px;
+            content: "";
+            background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+            display: block;
+            margin: 0 auto;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+
+        .color input {
+            background-color: #f1f1f1;
+        }
+
         .files:before {
-        position: absolute;
-        bottom: 10px;
-        left: 0;  pointer-events: none;
-        width: 100%;
-        right: 0;
-        height: 57px;
-        display: block;
-        margin: 0 auto;
-        color: #2ea591;
-        font-weight: 600;
-        text-transform: capitalize;
-        text-align: center;
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            pointer-events: none;
+            width: 100%;
+            right: 0;
+            height: 57px;
+            display: block;
+            margin: 0 auto;
+            color: #2ea591;
+            font-weight: 600;
+            text-transform: capitalize;
+            text-align: center;
         }
     </style>
-    
+
     <style>
         .view {
-          background-color: rgb(28, 56, 102);
+            background-image: url("https://images.pexels.com/photos/360912/pexels-photo-360912.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+            background-repeat: no-repeat;
+            background-size: cover;
         }
-    
+
         header {
-          height: 50%;
+            height: 50%;
         }
-    
+
         .view {
-          height: 94%;
+            height: 94%;
         }
-      </style>
+    </style>
 
 
 </head>
 
 <body>
     <header>
-    <nav class="navbar navbar-expand-lg dest-nav">
-        <a class="navbar-brand" href="/"><strong>Globe Trotters.</strong></a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/#About-us">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/destination">Destinations</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#Contact">Contact Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/#FAQs">FAQs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Logout</a>
-                </li>
-            </ul>
+        <nav class="navbar navbar-expand-lg dest-nav">
+            <a class="navbar-brand" href="/"><strong>Globe Trotters.</strong></a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#About-us">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/destination">Destinations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#FAQs">FAQs</a>
+                    </li>
+                    <% if(user){%>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                    <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Login</a>
+                    </li>
+                    <% } %>
+                    <% if(user){%>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    <% } %>
+                </ul>
 
 
 
-        </div>
-    </nav>
-    <div class="view intro-2">
-        <div class="full-bg-img">
-          <div class="mask rgba-black-light flex-center">
-            <div class="container text-center white-text">
-              <div class="white-text wow fadeInUp row">
-                
-                <img width="15%" height="50%" src="data:image/png;base64,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">
-                <p>Khushi Naik</p>
-              </div>
             </div>
-          </div>
+        </nav>
+        <div class="view intro-2">
+            <div class="full-bg-img">
+                <div class="mask rgba-black-light flex-center">
+                    <div class="container text-center white-text">
+                        <div class="offset-4 white-text text-center pt-5 row">
+
+                            <h1 style="font-size: 75;color: azure;">New Blog</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </header>
-    
+
     <br><br>
     <!-- Default form contact -->
     <div class="container-fluid">
@@ -129,10 +155,11 @@
             <div>
                 <form class="border border-light p-5" action="blog" method="post" enctype="multipart/form-data">
 
-                    <p class="h4 mb-4">New Blog</p>
+                    
 
                     <!-- Name -->
-                    <input name="blog_title" type="text" id="blogname" class="form-control mb-4 col-4" placeholder="Title of the blog">
+                    <input name="blog_title" type="text" id="blogname" class="form-control mb-4 col-4"
+                        placeholder="Title of the blog">
 
                     <!-- Subject -->
                     <label><i class="fas fa-flag"></i> Choose a Country</label><br>
@@ -140,12 +167,13 @@
                     <select name="blog_country" class="browser-default custom-select mb-4 col-4">
                         <% submission.forEach(function (op) { 
                             op.country.forEach(function (opt) {%>
-                            <option value="<%= opt %>"><%= opt %></option>
-                            <%}) }) %>
+                        <option value="<%= opt %>"><%= opt %></option>
+                        <%}) }) %>
                     </select><br>
                     <!-- Default inline 1-->
                     <div class="custom-control custom-checkbox custom-control-inline">
-                        <input name="blog_category" value="History" type="checkbox" class="custom-control-input" id="cat1">
+                        <input name="blog_category" value="History" type="checkbox" class="custom-control-input"
+                            id="cat1">
                         <label class="custom-control-label" for="cat1"><i class="fas fa-landmark"></i> History</label>
                     </div>
 
@@ -157,11 +185,13 @@
 
                     <!-- Default inline 3-->
                     <div class="custom-control custom-checkbox custom-control-inline">
-                        <input name="blog_category" value="Others" type="checkbox" class="custom-control-input" id="cat3">
+                        <input name="blog_category" value="Others" type="checkbox" class="custom-control-input"
+                            id="cat3">
                         <label class="custom-control-label" for="cat3"><i class="fas fa-parachute-box"></i> Things to
                             do</label>
                     </div><br>
-                    <input name="blog_description" type="text" id="description" class="form-control mb-4" placeholder="Description">
+                    <input name="blog_description" type="text" id="description" class="form-control mb-4"
+                        placeholder="Description">
                     <!-- Message -->
                     <div class="form-group">
                         <textarea name="blog_content" class="form-control rounded-0" id="blog_content" rows="10"
@@ -177,7 +207,7 @@
                                 <input type="file" name="files" class="form-control" multiple>
                             </div>
                         </div>
-                      </div>
+                    </div>
 
                     <!-- Send button -->
                     <button class="btn purple-gradient" type="submit">Post</button>
@@ -216,11 +246,12 @@
                         <li><a href="/#FAQs">FAQs</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" id="Contact">
                     <h4>Contact Us</h4>
                     <p><i class="fa fa-mobile" aria-hidden="true"></i> 1234567890
                         <br><i class="fa fa-phone" aria-hidden="true"></i> 0987654321
-                        <br><a href="mailto:globetrotters@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i> globetrotters@gmail.com</a></p>
+                        <br><a href="mailto:globetrotters@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i>
+                            globetrotters@gmail.com</a></p>
                 </div>
                 <!--/.Second column-->
             </div>

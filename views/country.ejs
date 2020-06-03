@@ -61,9 +61,20 @@
           <li class="nav-item">
             <a class="nav-link" href="/#FAQs">FAQs</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/">Logout</a>
-          </li>
+          <% if(user){%>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+            <% } else { %>  
+            <li class="nav-item">
+                <a class="nav-link" href="/">Login</a>
+            </li>
+            <% } %>
+            <% if(user){%>
+              <li class="nav-item">
+                  <a class="nav-link" href="/dashboard">Dashboard</a>
+              </li>
+              <% } %>
         </ul>
 
       </div>
@@ -123,8 +134,11 @@
 
             <!-- Featured image -->
             <div class="view overlay">
-              <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid"
-                alt="Sample image for first version of blog listing">
+              <% if(typeof usersArray[i].result[j].blog.data !== 'undefined' && usersArray[i].result[j].blog.data.length > 0){ %>
+                <img src="data:image/png;base64,<%= usersArray[i].result[j].blog.data[0] %>" class="img-fluid" alt="Sample image for first version of blog listing">
+                <%} else{ %>
+                  <img src="https://images.pexels.com/photos/2419865/pexels-photo-2419865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid" alt="Sample image for first version of blog listing">
+                <%}%>
               <a>
                 <div class="mask rgba-white-slight"></div>
               </a>

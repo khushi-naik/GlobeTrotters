@@ -15,6 +15,9 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/css/mdb.min.css" rel="stylesheet">
   <link href="images/land.css" type="text/css" rel="stylesheet">
   <style>
+    html{
+  scroll-behavior: smooth;
+}
     .bl{
       margin-top: 9px;
     }
@@ -51,9 +54,14 @@
           </li>
           <% } else { %>  
           <li class="nav-item">
-              <a class="nav-link" href="/login">Login</a>
+              <a class="nav-link" href="/">Login</a>
           </li>
           <% } %>
+          <% if(user){%>
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+            </li>
+            <% } %>
       </ul>
 
 
@@ -88,14 +96,14 @@
             
             
             <form action="country" method="POST">
-              <select name="country">
+              <select style="width: 20%" class="browser-default custom-select custom-select-lg mb-3" name="country">
                 <% if (typeof usersArray2 !== 'undefined' && usersArray2.length > 0) {%>
                 <% usersArray2[0].country.forEach(function (op) { %>
                 <option value="<%= op %>"><%= op %></option>
                 <% }) %>
                 <% } %>
               </select>
-              <input type="submit">
+              <input class="btn btn-primary" type="submit">
             </form>
           </div>
           <!--/Dropdown primary-->
@@ -118,8 +126,11 @@
 
           <!-- Featured image -->
           <div class="view overlay">
-            <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid"
-              alt="Sample image for first version of blog listing">
+            <% if(typeof usersArray[i].result[j].blog.data !== 'undefined' && usersArray[i].result[j].blog.data.length > 0){ %>
+              <img src="data:image/png;base64,<%= usersArray[i].result[j].blog.data[0] %>" class="img-fluid" alt="Sample image for first version of blog listing">
+              <%} else{ %>
+                <img src="https://images.pexels.com/photos/2419865/pexels-photo-2419865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid" alt="Sample image for first version of blog listing">
+              <%}%>
             <a>
               <div class="mask rgba-white-slight"></div>
             </a>
@@ -172,7 +183,7 @@
             <li><a href="/#FAQs">FAQs</a></li>
           </ul>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" id="Contact">
           <h4>Contact Us</h4>
           <p><i class="fa fa-mobile" aria-hidden="true"></i> 1234567890
             <br><i class="fa fa-phone" aria-hidden="true"></i> 0987654321

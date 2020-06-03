@@ -150,8 +150,8 @@ app.post('/sign_up', function (req, res) {
 app.get('/dashboard', ensureAuthenticated, (req, res) =>
     User.findOne({ email: req.user.email }, function (err, result) {
         if (err) throw err;
-        var obd = { dashboard: result };
-        res.render('dashboard', obd);
+        //var obd = { dashboard: result };
+        res.render('dashboard', {dashboard:result,user: req.user});
     })
 )
 
@@ -159,8 +159,8 @@ app.get('/dashboard', ensureAuthenticated, (req, res) =>
 app.get('/newblog', function (req, res) {
     db.collection("world").find({}).toArray(function (err, result) {
         if (err) throw err;
-        var count = { submission: result };
-        res.render('submission', count);
+        //var count = { submission: result };
+        res.render('submission', {submission: result,user: req.user});
     })
 });
 
@@ -319,7 +319,7 @@ app.post('/country', function (req, res) {
     var c = req.body.country;
     User.aggregate([{$project:{result:{$filter:{input:"$continent",as:"continent",cond:{$eq:["$$continent.blog.country",c]}}},"first_name":1,"last_name":1,"email":1}}],function(err,result){
         if(err) throw err;
-        res.render('country',{usersArray: result,country_name:c});
+        res.render('country',{usersArray: result,country_name:c,user: req.user});
     })
     
    
@@ -327,9 +327,9 @@ app.post('/country', function (req, res) {
 
 app.post('/blogpage', function (req, res) {
     var blobj;
-    User.aggregate([{$match: {email: ema}},{$project:{result:{$filter:{input:"$continent",as:"continent",cond:{$eq:["$$continent.blog.title",title]}}},"first_name":1,"last_name":1,"email":1}}],function(err,result){
+    User.aggregate([{$match: {email: req.body.blogEmail}},{$project:{result:{$filter:{input:"$continent",as:"continent",cond:{$eq:["$$continent.blog.title",req.body.blogTitle]}}},"first_name":1,"last_name":1,"email":1}}],function(err,result){
         if(err) throw err;
-        res.render('blog',{blogArray: result});
+        res.render('blog',{blogArray: result,user: req.user});
     })
 })
 

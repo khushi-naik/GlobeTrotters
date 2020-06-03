@@ -31,6 +31,12 @@
         .bl {
             margin-top: 9px;
         }
+
+        .column {
+            float: left;
+            width: 33.33%;
+            padding: 5px;
+        }
     </style>
 
 </head>
@@ -58,9 +64,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/#FAQs">FAQs</a>
                     </li>
+                    <% if(user){%>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Logout</a>
                     </li>
+                    <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Login</a>
+                    </li>
+                    <% } %>
+                    <% if(user){%>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard">Dashboard</a>
+                        </li>
+                        <% } %>
                 </ul>
 
             </div>
@@ -79,7 +96,7 @@
                             <div>
                                 <h2><%= blogArray[0].result[0].blog.title %></h2>
                                 <p>by <%= blogArray[0].first_name %> <%= blogArray[0].last_name %> </p>
-                
+
                             </div>
                         </div>
                     </div>
@@ -93,16 +110,29 @@
 
 
 
-        
-            <div class="col-md-8 offset-2">
-            <img width="100%" src="https://images.pexels.com/photos/2419865/pexels-photo-2419865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-            </div><br>
-            
-            <!--<p><%= blogArray[0].result[0].blog.title %></p>-->
-            <p class="font-weight-normal"><br><br> <%= blogArray[0].result[0].blog.content %></p>
-            
 
-        
+        <div class="col-md-8 offset-2">
+            <% if(typeof blogArray[0].result[0].blog.data !== 'undefined' && blogArray[0].result[0].blog.data.length > 0){ %>
+                <img src="data:image/png;base64,<%= blogArray[0].result[0].blog.data[0] %>" class="img-fluid"
+                alt="Sample image for first version of blog listing">
+                <%}%>
+        </div><br>
+
+        <!--<p><%= blogArray[0].result[0].blog.title %></p>-->
+        <p class="font-weight-normal"><br><br> <%= blogArray[0].result[0].blog.content %></p> <br>
+        <div class="container">
+            <div class="row">
+                <% if(typeof blogArray[0].result[0].blog.data !== 'undefined' && blogArray[0].result[0].blog.data.length > 0){ %>
+                <% for(var i=0 ; i<blogArray[0].result[0].blog.data.length ; i++){ %>
+                <div class="column">
+                    <img style="height: 280px" src="data:image/png;base64,<%= blogArray[0].result[0].blog.data[i] %>" class="img-fluid"
+                        alt="Sample image for first version of blog listing">
+                </div>
+                <%} %>
+                <% } %>
+            </div>
+        </div>
+
 
 
     </div>
@@ -127,12 +157,12 @@
                 <div class="col-md-4">
 
                     <ul>
-                        <li><a href="#!">About Us</a></li>
-                        <li><a href="#!">Destinations</a></li>
-                        <li><a href="#!">FAQs</a></li>
+                        <li><a href="/#About-us">About Us</a></li>
+                        <li><a href="/destination">Destinations</a></li>
+                        <li><a href="/#FAQs">FAQs</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" id="Contact">
                     <h4>Contact Us</h4>
                     <p><i class="fa fa-mobile" aria-hidden="true"></i> 1234567890
                         <br><i class="fa fa-phone" aria-hidden="true"></i> 0987654321
