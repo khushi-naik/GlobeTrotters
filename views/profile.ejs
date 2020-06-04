@@ -1,23 +1,87 @@
 <html>
 
 <head>
-    <title>Dashboard | GlobeTrotters</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--<link href="images/land.css" type="text/css" rel="stylesheet">-->
+    <title>new blog</title>
 
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/css/mdb.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="images/land.css">
+    <link href="images/land.css" type="text/css" rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <style>
+        .files input {
+            outline: 2px dashed #92b0b3;
+            outline-offset: -10px;
+            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            padding: 120px 0px 85px 35%;
+            text-align: center !important;
+            margin: 0;
+            width: 100% !important;
+        }
+
+        .files input:focus {
+            outline: 2px dashed #92b0b3;
+            outline-offset: -10px;
+            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            border: 1px solid #92b0b3;
+        }
+
+        .files {
+            position: relative
+        }
+
+        .files:after {
+            pointer-events: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 50px;
+            right: 0;
+            height: 56px;
+            content: "";
+            background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+            display: block;
+            margin: 0 auto;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+
+        .color input {
+            background-color: #f1f1f1;
+        }
+
+        .files:before {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            pointer-events: none;
+            width: 100%;
+            right: 0;
+            height: 57px;
+            display: block;
+            margin: 0 auto;
+            color: #2ea591;
+            font-weight: 600;
+            text-transform: capitalize;
+            text-align: center;
+        }
+    </style>
+
     <style>
         .view {
-            background-color: rgb(28, 56, 102);
+            background-image: url("https://images.pexels.com/photos/360912/pexels-photo-360912.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         header {
@@ -27,25 +91,14 @@
         .view {
             height: 94%;
         }
-
-        .bl {
-            margin-top: 9px;
-        }
-
-        .column {
-            float: left;
-            width: 33.33%;
-            padding: 5px;
-        }
     </style>
+
 
 </head>
 
 <body>
-
     <header>
-
-        <nav class="navbar fixed-top navbar-expand-lg dest-nav">
+        <nav class="navbar navbar-expand-lg dest-nav">
             <a class="navbar-brand" href="/"><strong>Globe Trotters.</strong></a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
@@ -74,13 +127,12 @@
                     </li>
                     <% } %>
                     <% if(user){%>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/dashboard">Dashboard</a>
-                        </li>
-                        <% } %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    <% } %>
                 </ul>
 
-            </div>
 
 
             </div>
@@ -89,66 +141,58 @@
             <div class="full-bg-img">
                 <div class="mask rgba-black-light flex-center">
                     <div class="container text-center white-text">
-                        <div class="offset-4 white-text text-light pt-5 row">
+                        <div class="offset-4 white-text text-center pt-5 row">
 
-                            <img width="15%" height="50%"
-                                src="https://cdn4.iconfinder.com/data/icons/occupation-and-people-avatar-vol-1-1/128/Woman_avatar_assistant_young_people_female_girl-512.png" />
-                            <div>
-                                <h2><%= blogArray[0].result[0].blog.title %></h2>
-                                <p>by <%= blogArray[0].first_name %> <%= blogArray[0].last_name %> </p>
-                                <% if(typeof blogArray[0].result[0].blog.date !== 'undefined'){ %>
-                                <p><%= blogArray[0].result[0].blog.date.substring(0,16) %></p>
-                                <%}%>
-                            </div>
+                            <h1 style="font-size: 75;color: azure;"> Profile</h1>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </header>
 
-    <div class="container">
+    <br><br>
+
+    <div class="container col-md-8 offset-4">
+        <div class="offset-2 dark-text text-center pt-5 row">
+
+            <h2> Personal Info <br><br></h2>
+        </div>
+        <div class="row">
+
+            <img width="15%" height="50%"
+                src="https://cdn4.iconfinder.com/data/icons/occupation-and-people-avatar-vol-1-1/128/Woman_avatar_assistant_young_people_female_girl-512.png" />
 
 
+            <form action="editProfile" method="POST">
+                <label for="email">Email:</label>
+                <input style="width: 280px" id="email" class="form-control mb-4" name="email" value="<%= user.email%>">
+                <label for="fName">First Name:</label>
+                <input id="fName" class="form-control mb-4" name="firstName" value="<%= user.first_name%>">
+                <label for="lName">Last Name:</label>
+                <input id="lName" class="form-control mb-4" name="lastName" value="<%= user.last_name%>">
+                <button class="btn btn-primary" type="submit">Save</button>
+            </form>
 
-
-        <div class="col-md-8 offset-2">
-            <% if(typeof blogArray[0].result[0].blog.data !== 'undefined' && blogArray[0].result[0].blog.data.length > 0){ %>
-                <img src="data:image/png;base64,<%= blogArray[0].result[0].blog.data[0] %>" class="img-fluid"
-                alt="Sample image for first version of blog listing">
-                <%}%>
-        </div><br>
-
-        <!--<p><%= blogArray[0].result[0].blog.title %></p>-->
-        <p class="font-weight-normal"><br><br> <%= blogArray[0].result[0].blog.content %></p> <br>
-        <div class="container">
-            <div class="row">
-                <% if(typeof blogArray[0].result[0].blog.data !== 'undefined' && blogArray[0].result[0].blog.data.length > 1){ %>
-                <% for(var i=1 ; i<blogArray[0].result[0].blog.data.length ; i++){ %>
-                <div class="column">
-                    <img style="height: 280px" src="data:image/png;base64,<%= blogArray[0].result[0].blog.data[i] %>" class="img-fluid"
-                        alt="Sample image for first version of blog listing">
-                </div>
-                <%} %>
-                <% } %>
-            </div>
         </div>
 
-
-
-    </div>
-
     </div>
 
 
+    </div>
+    <!-- Default form contact -->
 
-    <br><br>
-    <footer class="page-footer font-small pt-5 pb-n5">
+
+
+    <br><br><br><br><br><br><br>
+
+    <footer class="page-footer font-small pt-4">
 
         <!--Footer Links-->
         <div class="container-fluid">
             <div class="row">
+
+
                 <div class="col-md-4">
                     <h1>GlobeTrotters.</h1>
 
@@ -160,7 +204,7 @@
 
                     <ul>
                         <li><a href="/#About-us">About Us</a></li>
-                        <li><a href="/destination">Destinations</a></li>
+                        <li><a href="/destinations">Destinations</a></li>
                         <li><a href="/#FAQs">FAQs</a></li>
                     </ul>
                 </div>
@@ -181,7 +225,9 @@
         <!-- Copyright -->
 
     </footer>
-
+    <script>
+        AOS.init();
+    </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript"
@@ -192,7 +238,6 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/js/mdb.min.js"></script>
-
 </body>
 
 </html>

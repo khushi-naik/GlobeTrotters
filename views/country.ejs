@@ -154,7 +154,10 @@
             <h4 class="h4 mb-4"><input style="border: none;" name="blogTitle" value="<%= usersArray[i].result[j].blog.title %>" readonly> </h4>
 
             <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
-            <p class="font-weight-normal">by <a><strong><%= usersArray[i].first_name %> <%= usersArray[i].last_name %></strong></a>
+            <p class="font-weight-normal">by <strong><%= usersArray[i].first_name %> <%= usersArray[i].last_name %></strong><br>
+              <% if(typeof usersArray[i].result[j].blog.date !== 'undefined'){ %>
+                <%= usersArray[i].result[j].blog.date.substring(0,16) %>
+                <%}%>
               <br><input style="border:none;" name="blogEmail" value="<%= usersArray[i].email %>"></p>
             <button type="submit" class="btn btn-success">Read more</button>
               </form>
@@ -180,8 +183,11 @@
 
             <!-- Featured image -->
             <div class="view overlay">
-              <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid"
-                alt="Sample image for first version of blog listing">
+              <% if(typeof usersArray[i].result[j].blog.data !== 'undefined' && usersArray[i].result[j].blog.data.length > 0){ %>
+                <img src="data:image/png;base64,<%= usersArray[i].result[j].blog.data[0] %>" class="img-fluid" alt="Sample image for first version of blog listing">
+                <%} else{ %>
+                  <img src="https://images.pexels.com/photos/2419865/pexels-photo-2419865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid" alt="Sample image for first version of blog listing">
+                <%}%>
               <a>
                 <div class="mask rgba-white-slight"></div>
               </a>
@@ -228,8 +234,11 @@
 
             <!-- Featured image -->
             <div class="view overlay">
-              <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid"
-                alt="Sample image for first version of blog listing">
+              <% if(typeof usersArray[i].result[j].blog.data !== 'undefined' && usersArray[i].result[j].blog.data.length > 0){ %>
+                <img src="data:image/png;base64,<%= usersArray[i].result[j].blog.data[0] %>" class="img-fluid" alt="Sample image for first version of blog listing">
+                <%} else{ %>
+                  <img src="https://images.pexels.com/photos/2419865/pexels-photo-2419865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid" alt="Sample image for first version of blog listing">
+                <%}%>
               <a>
                 <div class="mask rgba-white-slight"></div>
               </a>
@@ -276,8 +285,11 @@
 
             <!-- Featured image -->
             <div class="view overlay">
-              <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid"
-                alt="Sample image for first version of blog listing">
+              <% if(typeof usersArray[i].result[j].blog.data !== 'undefined' && usersArray[i].result[j].blog.data.length > 0){ %>
+                <img src="data:image/png;base64,<%= usersArray[i].result[j].blog.data[0] %>" class="img-fluid" alt="Sample image for first version of blog listing">
+                <%} else{ %>
+                  <img src="https://images.pexels.com/photos/2419865/pexels-photo-2419865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid" alt="Sample image for first version of blog listing">
+                <%}%>
               <a>
                 <div class="mask rgba-white-slight"></div>
               </a>

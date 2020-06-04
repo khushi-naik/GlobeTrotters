@@ -20,7 +20,18 @@
 
     }
   </style>
-
+  <script>
+    function validate(){
+      var email = document.getElementById('defaultLoginFormEmail');
+      console.log("heyyyyy");
+     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))
+  {
+    return (true)
+  }
+    alert("You have entered an invalid email address!")
+    return (false)
+}
+  </script>
 </head>
 
 <body>

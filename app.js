@@ -183,9 +183,10 @@ app.post('/blog', function (req, res) {
         db.collection("world").findOne({ country: req.body.blog_country }, function (err, result) {
             if (err) throw err;
             var cont = result.continent;
-            User.updateOne({email: req.user.email}, { $push: { continent: { continent_name: cont, blog: { country: req.body.blog_country, title: req.body.blog_title, category: req.body.blog_category, description: req.body.blog_description, content: req.body.blog_content, data: images}}}}, (err, result) => {
-                if(err) throw err
-                res.json(result)
+            User.updateOne({email: req.user.email}, { $push: { continent: { continent_name: cont, blog: { country: req.body.blog_country,date: Date(), title: req.body.blog_title, category: req.body.blog_category, description: req.body.blog_description, content: req.body.blog_content, data: images}}}}, (err, result) => {
+                if(err) throw err;
+                res.render('dashboard',{dashboard: req.user, user:req.user});
+                
             })    
         })
         
@@ -333,6 +334,23 @@ app.post('/blogpage', function (req, res) {
     })
 })
 
+app.get('/profile',function(req,res){
+    console.log(req.user.first_name);
+    res.render('profile',{user: req.user});
+});
+
+app.post('/editProfile',function(req,res){
+    console.log(req.body.firstName);
+    console.log(req.body.lastName);
+    console.log(req.body.email);
+    User.updateOne({email: req.user.email}, { $set: {email: req.body.email, first_name: req.body.firstName, last_name: req.body.lastName}}, (err, result) => {
+        if(err) throw err;
+        console.log(result);
+       
+    })    
+    res.render('dashboard',{dashboard: req.user,user: req.user});
+    
+});
 
 
 

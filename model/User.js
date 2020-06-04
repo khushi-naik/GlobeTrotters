@@ -30,6 +30,9 @@ const userschema = mongoose.Schema({
             data: [{
                 type: String
             }],
+            date: {
+                type: String,
+            },
             country: {
                 type: String,
             },
