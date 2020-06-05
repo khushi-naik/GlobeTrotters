@@ -17,18 +17,22 @@
   },
   "homepage": "https://github.com/JoshuaPoddoku/GlobeTrotters#readme",
   "dependencies": {
+    "async": "^3.2.0",
     "bcrypt": "^4.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
+    "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "mongoose": "^5.9.5",
     "multer": "^1.4.2",
     "node-static": "^0.7.11",
+    "nodemailer": "^6.4.8",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "randomstring": "^1.1.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

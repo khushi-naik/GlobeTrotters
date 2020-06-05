@@ -160,13 +160,23 @@
         </div>
         <div class="row">
 
-            <img width="15%" height="50%"
-                src="https://cdn4.iconfinder.com/data/icons/occupation-and-people-avatar-vol-1-1/128/Woman_avatar_assistant_young_people_female_girl-512.png" />
-
-
+            <form action="changeProPic" method="POST">
+                <input type="submit" class="btn blue-gradient" value="Edit Profile Picture">
+            </form><br>
+ 
+            <%- include('./partials/messages.ejs'); %>
+          
+           <%if(user.ProfilePic == "NA"){ %>
+            <img width="15%" height="50%" src="/images/GlobeTrotters.jpeg" />
+            <%}else{%>
+                <img width="15%" height="50%" src="data:image/png;base64,<%= user.ProfilePic %>" />
+            <%}%>
+        
+            
             <form action="editProfile" method="POST">
+                
                 <label for="email">Email:</label>
-                <input style="width: 280px" id="email" class="form-control mb-4" name="email" value="<%= user.email%>">
+                <input style="width: 280px" id="email" class="form-control mb-4" name="email" value="<%= user.email %>">
                 <label for="fName">First Name:</label>
                 <input id="fName" class="form-control mb-4" name="firstName" value="<%= user.first_name%>">
                 <label for="lName">Last Name:</label>

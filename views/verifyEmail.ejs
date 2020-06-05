@@ -1,7 +1,8 @@
+
 <html>
 
 <head>
-    <title>login</title>
+    <title>Verification</title>
     
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -12,20 +13,6 @@
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/css/mdb.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="images/land.css">
-    <script>
-        function validate() {
-            
-            var pass = document.getElementById("password");
-            var cpass = document.getElementById("cpass")
-            if (pass.value.trim() != cpass.value.trim()) {
-                alert("passwords entered do not match.");
-                return false;
-            }
-            else
-                true;
-
-        }
-    </script>
 </head>
 
 <body>
@@ -71,47 +58,23 @@
 
                         <div class="white-text text-center wow fadeInUp">
 
-
                             <!-- Default form login -->
                             <div class="col-md-6 rounded z-depth-4 colorsign ">
-                                <!-- Default form login -->
-                                <form onsubmit="return validate()" class="text-center p-5" action="/sign_up" method="post" enctype="multipart/form-data"<br><br><br>
-                                    <p class="center line-1 anim-typewriter">Explore with us and keep writing.<i
-                                            class="far fa-heart"></i>
-                                    </p>
+                                <form class="text-center p-5" action="/verify" method="POST">
 
-                                    <p class="h4 mb-4">Sign in</p>
-                                    <input name="first_name" id="first_name" type="text" placeholder="first name" required class="form-control mb-4">
-                                    <input name="last_name" id="last_name" type="text" placeholder="last name" required class="form-control mb-4" >
-                                    <input name="email" id="email" type="email" placeholder="Email" required class="form-control mb-4">
-                                    <input name="password" id="password" type="password" placeholder="password" required class="form-control mb-4">
-                                    <input id="cpass" type="password" placeholder="confirm password" required class="form-control mb-4"> 
-                                    <div class="custom-file mb-3">
-                                        <input type="file" name="file" id="file" class="custom-file-input">
-                                        <label for="file" class="custom-file-label">Choose File</label>
-                                    </div>
-                                    <div class="d-flex justify-content-around">
-                                        <div>
-                                            <!-- Remember me -->
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input"
-                                                    id="defaultLoginFormRemember">
-                                                <label class="custom-control-label"
-                                                    for="defaultLoginFormRemember">Remember me</label>
-                                            </div>
-                                        </div>
-                                       
-                                    </div>
+                                    <p class="h4 mb-4">Verification</p>
+                                    
+                                    <%- include('./partials/messages.ejs'); %>
+
+                                    <!-- Password -->
+                                    <input type="text" id="secertToken" class="form-control mb-4" name="secretToken" placeholder="Verification Code">
 
                                     <!-- Sign in button -->
-                                    <button class="btn btn-info btn-block my-4" type="submit">Sign Up</button>
-
-                                    <!-- Register -->
-                                    
-
-                                    
+                                    <button class="btn btn-info btn-block my-4" type="submit">Verify</button>
 
                                 </form>
+                                <!-- Default form login -->
+
                                 <!-- Default form login -->
                             </div>
                             <!-- Default form login -->
