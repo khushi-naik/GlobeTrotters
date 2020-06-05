@@ -493,6 +493,41 @@ app.post('/upload', (req, res) => {
      }
    });
  });
+ app.post('/edit',function(req,res){
+     var blogObj;
+     console.log(req.user.email);
+     console.log(req.body.blogTitle);
+     db.collection("world").find({}).toArray(function (err, result) {
+        if (err) throw err;
+        //var count = { submission: result };
+        blogObj = result;
+        //res.render('editBlog', {submission: result,user: req.user});
+    })
+    User.aggregate([{$match: {email: req.user.email}},{$project:{result:{$filter:{input:"$continent",as:"continent",cond:{$eq:["$$continent.blog.title",req.body.blogTitle]}}},"first_name":1,"last_name":1,"email":1}}],function(err,result){
+        if(err) throw err;
+        res.render('editBlog',{blogArray: result,user: req.user, submission: blogObj});
+    })
+     //res.render('editBlog',{user: req.user})
+ })
+
+ app.post('/blogedit',function(req,res){
+     console.log("edit blog here");
+     console.log(req.body.blog_country);
+     console.log(req.body.blog_content);
+     console.log(req.body.blog_title);
+     console.log(req.body.blog_description);
+    db.collection("world").findOne({ country: req.body.blog_country }, function (err, result) {
+        if (err) throw err;
+        var cont = result.continent;
+        User.updateOne({ email: req.user.email }, { $set: { continent: { continent_name: cont, blog: { country: req.body.blog_country,date: Date(), title: req.body.blog_title, description: req.body.blog_description, content: req.body.blog_content}}}}, (err, result) => {
+            if(err) throw err;
+            res.render('dashboard',{dashboard: req.user, user:req.user});
+            
+        })    
+    });
+ })
+
+
 
 app.listen(3000, function () {
     console.log("connected to server 3000");

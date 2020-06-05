@@ -39,3 +39,73 @@
     res.render('asia', {asia: wor,blogs: conb});
     }*/
     //res.sendFile(path.join(__dirname + '/views/asia.html'));
+
+
+
+<form class="border border-light p-5" action="blogedit" method="post" enctype="multipart/form-data">
+
+                    
+
+                    <!-- Name -->
+                   <input name="blog_title" type="text" id="blogname" class="form-control mb-4 col-4"
+                        value="<%= blogArray[0].result[0].blog.title %>">
+
+                    <!-- Subject -->
+                    <label><i class="fas fa-flag"></i> Choose a Country</label><br>
+
+                    <select name="blog_country" class="browser-default custom-select mb-4 col-4">
+                        <option value="<%= blogArray[0].result[0].blog.country %>" selected><%= blogArray[0].result[0].blog.country %></option>
+                        <% submission.forEach(function (op) { 
+                            op.country.forEach(function (opt) {%>
+                        <option value="<%= opt %>"><%= opt %></option>
+                        <%}) }) %>
+
+                    </select><br>
+                    <!-- Default inline 1-->
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input name="blog_category" value="History" type="checkbox" class="custom-control-input"
+                            id="cat1">
+                        <label class="custom-control-label" for="cat1"><i class="fas fa-landmark"></i> History</label>
+                    </div>
+
+                    <!-- Default inline 2-->
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input name="blog_category" value="Food" type="checkbox" class="custom-control-input" id="cat2">
+                        <label class="custom-control-label" for="cat2"><i class="fas fa-utensils"></i> Food</label>
+                    </div>
+
+                    <!-- Default inline 3-->
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input name="blog_category" value="Others" type="checkbox" class="custom-control-input"
+                            id="cat3">
+                        <label class="custom-control-label" for="cat3"><i class="fas fa-parachute-box"></i> Things to
+                            do</label>
+                    </div><br>
+                    <input name="blog_description" type="text" id="description" class="form-control mb-4"
+                    value="<%= blogArray[0].result[0].blog.description %>">
+                    <!-- Message -->
+                    <div class="form-group">
+                        <textarea name="blog_content" class="form-control rounded-0" id="blog_content" rows="10"><%= blogArray[0].result[0].blog.content %></textarea>
+                    </div>
+
+                    <!-- Copy -->
+
+                    <div class="row">
+                        <div class="col-md-6 m-auto">
+                            <div class="form-group files">
+                                <label>Upload Your File</label>
+                                <input type="file" name="files" class="form-control" multiple>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Send button -->
+                    <button class="btn purple-gradient" type="submit">Post Changes</button>
+                    </form>
+
+
+<form action="blogedit" method="POST">
+        <input name="blg" type="text" id="blogname" class="form-control mb-4 col-4"
+                        value="<%= blogArray[0].result[0].blog.title %>">
+                        <button class="btn purple-gradient" type="submit">Post Changes</button>
+    </form>

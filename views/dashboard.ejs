@@ -131,7 +131,7 @@
 
         <!-- Card content -->
         <div class="card-body">
-          <form action="blogpage" method="POST" id="formBlog">
+          <form formaction="blogpage" method="POST" id="formBlog">
           <!-- Title -->
           <h4 class="card-title"><input style="border: none;" name="blogTitle" value="<%= wall.blog.title %>" readonly></h4>
           <!-- Text -->
@@ -140,7 +140,8 @@
             <%= wall.blog.date.substring(0,16) %></p>
             <%}%>
           <!-- Button -->
-          <button type="submit" class="btn btn-success">Read more  <i class="fas fa-angle-double-right"></i></button>
+          <button formaction="edit" type="submit" class="btn btn-success">edit  <i class="fas fa-angle-double-right"></i></button>
+          <button formaction="blogpage" type="submit" class="btn btn-success">Read more  <i class="fas fa-angle-double-right"></i></button>
           </form>
 
         </div>
