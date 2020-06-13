@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Dashboard | GlobeTrotters</title>
+    <title>Blog | GlobeTrotters</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--<link href="images/land.css" type="text/css" rel="stylesheet">-->
@@ -91,9 +91,15 @@
                     <div class="container text-center white-text">
                         <div class="offset-4 white-text text-light pt-5 row">
 
-                            <img width="15%" height="50%"
-                                src="https://cdn4.iconfinder.com/data/icons/occupation-and-people-avatar-vol-1-1/128/Woman_avatar_assistant_young_people_female_girl-512.png" />
-                            <div>
+                            <% if(blogArray[0].ProfilePic == 'NA'){ %>
+                                <img style="border-radius: 3px;" width="15%" height="50%" src="/images/GlobeTrotters.jpeg"
+                                  class="img-fluid" alt="Profile">
+                                <%} else{ %>
+                                <img style="border-radius: 3px;" width="15%" height="50%"
+                                  src="data:image/png;base64,<%= blogArray[0].ProfilePic %>" class="img-fluid" alt="Profile">
+                                <%}%>
+                                
+                            <div style="margin-left: 15px;">
                                 <h2><%= blogArray[0].result[0].blog.title %></h2>
                                 <p>by <%= blogArray[0].first_name %> <%= blogArray[0].last_name %> </p>
                                 <% if(typeof blogArray[0].result[0].blog.date !== 'undefined'){ %>
@@ -120,7 +126,7 @@
                 <%}%>
         </div><br>
 
-        <!--<p><%= blogArray[0].result[0].blog.title %></p>-->
+      
         <p class="font-weight-normal"><br><br> <%= blogArray[0].result[0].blog.content %></p> <br>
         <div class="container">
             <div class="row">
@@ -146,16 +152,14 @@
     <br><br>
     <footer class="page-footer font-small pt-5 pb-n5">
 
-        <!--Footer Links-->
+       
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-4">
                     <h1>GlobeTrotters.</h1>
 
                 </div>
-                <!--/.First column-->
-
-                <!--Second column-->
+               
                 <div class="col-md-4">
 
                     <ul>
@@ -168,14 +172,14 @@
                     <h4>Contact Us</h4>
                     <p><i class="fa fa-mobile" aria-hidden="true"></i> 1234567890
                         <br><i class="fa fa-phone" aria-hidden="true"></i> 0987654321
-                        <br><a href="mailto:globetrotters@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i>
-                            globetrotters@gmail.com</a></p>
+                        <br><a href="mailto:globetrotters0820@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i>
+                            globetrotters0820@gmail.com</a></p>
                 </div>
-                <!--/.Second column-->
+               
             </div>
         </div>
 
-        <!-- Copyright -->
+       
         <div class="footer-copyright text-center py-3"> Made with <i class="far fa-heart"></i> by GlobeTrotters
         </div>
         <!-- Copyright -->

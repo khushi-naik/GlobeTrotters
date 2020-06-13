@@ -161,7 +161,7 @@
                 
             </div>
 
-            <form action="blogedit" method="POST">
+            <form action="blogedit" method="POST" enctype="multipart/form-data">
                 <input name="blog_title" type="text" id="blogname" class="form-control mb-4 col-4"
                                 value="<%= blogArray[0].result[0].blog.title %>">
         
@@ -181,7 +181,14 @@
                             <div class="form-group">
                                 <textarea name="blog_content" class="form-control rounded-0" id="blog_content" rows="10"><%= blogArray[0].result[0].blog.content %></textarea>
                             </div>
-        
+                            <div class="row">
+                                <div class="col-md-6 m-auto">
+                                    <div class="form-group files">
+                                        <label>Upload Your File</label>
+                                        <input type="file" name="files" class="form-control" multiple>
+                                    </div>
+                                </div>
+                            </div>
                                 <button class="btn purple-gradient" type="submit">Post Changes</button>
             </form>
 

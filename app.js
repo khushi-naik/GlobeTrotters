@@ -3,6 +3,7 @@ var bodyParser = require("body-parser");
 const path = require('path');
 var http = require('http');
 var User = require('./model/User');
+var World = require('./model/World');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const session = require('express-session')
@@ -73,7 +74,7 @@ app.use((req, res, next) =>{
     res.locals.success_msg =  req.flash('success_msg')
     res.locals.error_msg =  req.flash('error_msg')
     res.locals.ProPic =  req.flash('ProPic')
-    
+    res.locals.error = req.flash('error')
     next()
 })
 
@@ -121,8 +122,6 @@ app.post('/login', function (req, res, next) {
         successRedirect: '/dashboard',
         failureRedirect: '/',
     })(req, res, next);
-
-    console.log("sess id is" + req.sessionID);
 })
 
 //logout
@@ -266,7 +265,7 @@ app.get('/dashboard', ensureAuthenticated, (req, res) =>
 
 //trial for blog submission
 app.get('/newblog', function (req, res) {
-    db.collection("world").find({}).toArray(function (err, result) {
+    World.find({}, function (err, result) {
         if (err) throw err;
         //var count = { submission: result };
         res.render('submission', {submission: result,user: req.user});
@@ -289,7 +288,7 @@ app.post('/blog', function (req, res) {
             images.push((req.files[i].buffer).toString('base64'))
         }
 
-        db.collection("world").findOne({ country: req.body.blog_country }, function (err, result) {
+        World.findOne({ country: req.body.blog_country }, function (err, result) {
             if (err) throw err;
             var cont = result.continent;
             User.updateOne({email: req.user.email}, { $push: { continent: { continent_name: cont, blog: { country: req.body.blog_country,date: Date(), title: req.body.blog_title, category: req.body.blog_category, description: req.body.blog_description, content: req.body.blog_content, data: images}}}}, (err, result) => {
@@ -319,7 +318,7 @@ var test;
 var wor;
 var conb;
 app.get('/asia', function (req, res) {
-    db.collection("world").find({ continent: "Asia" }).toArray(function (err, result) {
+    World.find({ continent: "Asia" }, function (err, result) {
         if (err) throw err;
         wor = result;
     });
@@ -328,7 +327,6 @@ app.get('/asia', function (req, res) {
         if (err) {
             console.log(err)
         } else {
-            console.log(result);
             res.render('asia', {
                 usersArray: result, usersArray2: wor, user: req.user
             })
@@ -339,7 +337,7 @@ app.get('/asia', function (req, res) {
 
 
 app.get('/europe', function (req, res) {
-    db.collection("world").find({ continent: "Europe" }).toArray(function (err, result) {
+    World.find({ continent: "Europe" }, function (err, result) {
         if (err) throw err;
         wor = result;
     });
@@ -348,7 +346,6 @@ app.get('/europe', function (req, res) {
         if (err) {
             console.log(err)
         } else {
-            console.log(result);
             res.render('europe', {
                 usersArray: result, usersArray2: wor, user: req.user
             })
@@ -356,7 +353,7 @@ app.get('/europe', function (req, res) {
     });
 });
 app.get('/africa', function (req, res) {
-    db.collection("world").find({ continent: "Africa" }).toArray(function (err, result) {
+    World.find({ continent: "Africa" }, function (err, result) {
         if (err) throw err;
         wor = result;
     });
@@ -365,7 +362,6 @@ app.get('/africa', function (req, res) {
         if (err) {
             console.log(err)
         } else {
-            console.log(result);
             res.render('africa', {
                 usersArray: result, usersArray2: wor, user: req.user
             })
@@ -373,7 +369,7 @@ app.get('/africa', function (req, res) {
     });
 });
 app.get('/australia', function (req, res) {
-    db.collection("world").find({ continent: "Australia" }).toArray(function (err, result) {
+    World.find({ continent: "Australia" }, function (err, result) {
         if (err) throw err;
         wor = result;
     });
@@ -382,7 +378,6 @@ app.get('/australia', function (req, res) {
         if (err) {
             console.log(err)
         } else {
-            console.log(result);
             res.render('australia', {
                 usersArray: result, usersArray2: wor, user: req.user
             })
@@ -390,7 +385,7 @@ app.get('/australia', function (req, res) {
     });
 });
 app.get('/namerica', function (req, res) {
-    db.collection("world").find({ continent: "North America" }).toArray(function (err, result) {
+    World.find({ continent: "North America" }, function (err, result) {
         if (err) throw err;
         wor = result;
     });
@@ -399,7 +394,6 @@ app.get('/namerica', function (req, res) {
         if (err) {
             console.log(err)
         } else {
-            console.log(result);
             res.render('namerica', {
                 usersArray: result, usersArray2: wor, user: req.user
             })
@@ -407,7 +401,7 @@ app.get('/namerica', function (req, res) {
     });
 });
 app.get('/samerica', function (req, res) {
-    db.collection("world").find({ continent: "South America" }).toArray(function (err, result) {
+    World.find({ continent: "South America" }, function (err, result) {
         if (err) throw err;
         wor = result;
     });
@@ -416,7 +410,6 @@ app.get('/samerica', function (req, res) {
         if (err) {
             console.log(err)
         } else {
-            console.log(result);
             res.render('samerica', {
                 usersArray: result, usersArray2: wor, user: req.user
             })
@@ -425,7 +418,6 @@ app.get('/samerica', function (req, res) {
 });
 
 app.post('/country', function (req, res) {
-    console.log(req.body.country);
     var c = req.body.country;
     User.aggregate([{$project:{result:{$filter:{input:"$continent",as:"continent",cond:{$eq:["$$continent.blog.country",c]}}},"first_name":1,"last_name":1,"email":1}}],function(err,result){
         if(err) throw err;
@@ -437,8 +429,9 @@ app.post('/country', function (req, res) {
 
 app.post('/blogpage', function (req, res) {
     var blobj;
-    User.aggregate([{$match: {email: req.body.blogEmail}},{$project:{result:{$filter:{input:"$continent",as:"continent",cond:{$eq:["$$continent.blog.title",req.body.blogTitle]}}},"first_name":1,"last_name":1,"email":1}}],function(err,result){
+    User.aggregate([{$match: {email: req.body.blogEmail}},{$project:{result:{$filter:{input:"$continent",as:"continent",cond:{$eq:["$$continent.blog.title",req.body.blogTitle]}}},"first_name":1,"last_name":1,"email":1,"ProfilePic":1}}],function(err,result){
         if(err) throw err;
+        
         res.render('blog',{blogArray: result,user: req.user});
     })
 })
@@ -493,41 +486,57 @@ app.post('/upload', (req, res) => {
      }
    });
  });
+
+var wall
  app.post('/edit',function(req,res){
      var blogObj;
-     console.log(req.user.email);
-     console.log(req.body.blogTitle);
-     db.collection("world").find({}).toArray(function (err, result) {
+     wall = req.body.wallID
+     World.find({},function (err, result) {
         if (err) throw err;
-        //var count = { submission: result };
         blogObj = result;
-        //res.render('editBlog', {submission: result,user: req.user});
     })
     User.aggregate([{$match: {email: req.user.email}},{$project:{result:{$filter:{input:"$continent",as:"continent",cond:{$eq:["$$continent.blog.title",req.body.blogTitle]}}},"first_name":1,"last_name":1,"email":1}}],function(err,result){
         if(err) throw err;
         res.render('editBlog',{blogArray: result,user: req.user, submission: blogObj});
     })
-     //res.render('editBlog',{user: req.user})
  })
 
- app.post('/blogedit',function(req,res){
-     console.log("edit blog here");
-     console.log(req.body.blog_country);
-     console.log(req.body.blog_content);
-     console.log(req.body.blog_title);
-     console.log(req.body.blog_description);
-    db.collection("world").findOne({ country: req.body.blog_country }, function (err, result) {
-        if (err) throw err;
-        var cont = result.continent;
-        User.updateOne({ email: req.user.email }, { $set: { continent: { continent_name: cont, blog: { country: req.body.blog_country,date: Date(), title: req.body.blog_title, description: req.body.blog_description, content: req.body.blog_content}}}}, (err, result) => {
-            if(err) throw err;
-            res.render('dashboard',{dashboard: req.user, user:req.user});
+ 
+ app.post('/blogedit', async function(req,res){
+
+    await upload(req, res, (err) => {
+        if(err){
+          throw err
+          
+        } else {
+          if(req.files == undefined){
+            console.log('errrr');
             
-        })    
-    });
+          } else {
+            var n = req.files.length;
+            let images = []
+            for(var i=0;i<n;i++) {
+                images.push((req.files[i].buffer).toString('base64'))
+            }
+            
+            World.find({ country:req.body.blog_country }, (err, cont) => {
+                if(err) throw err
+                find = cont[0].continent 
+                req.user.continent[wall].continent_name = find
+                req.user.continent[wall].blog.date = Date()
+                req.user.continent[wall].blog.data = images
+                req.user.continent[wall].blog.country= req.body.blog_country
+                req.user.continent[wall].blog.title= req.body.blog_title
+                req.user.continent[wall].description= req.body.blog_description
+                req.user.continent[wall].blog.content= req.body.blog_content
+                req.user.save()
+                req.flash('success_msg', 'Profile Pic is deleted')
+                res.redirect('/dashboard')
+            })      
+          }
+        }
+      })
  })
-
-
 
 app.listen(3000, function () {
     console.log("connected to server 3000");

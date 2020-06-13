@@ -32,8 +32,6 @@
     .bl {
       margin-top: 9px;
     }
-
-    
   </style>
 
 </head>
@@ -62,19 +60,19 @@
             <a class="nav-link" href="/#FAQs">FAQs</a>
           </li>
           <% if(user){%>
-            <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
-            </li>
-            <% } else { %>  
-            <li class="nav-item">
-                <a class="nav-link" href="/">Login</a>
-            </li>
-            <% } %>
-            <% if(user){%>
-              <li class="nav-item">
-                  <a class="nav-link" href="/dashboard">Dashboard</a>
-              </li>
-              <% } %>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+          <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Login</a>
+          </li>
+          <% } %>
+          <% if(user){%>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard">Dashboard</a>
+          </li>
+          <% } %>
         </ul>
 
       </div>
@@ -129,254 +127,258 @@
           <%for (var i = 0; i < usersArray.length; i++) { %>
           <% if(usersArray[i].result.length > 0) { %>
           <% for(var j=0; j< usersArray[i].result.length ; j++) { %>
-          <!-- Grid column -->
+
           <div class="col-md-4 offset-md-1 mx-3 my-3">
 
-            <!-- Featured image -->
+
             <div class="view overlay">
               <% if(typeof usersArray[i].result[j].blog.data !== 'undefined' && usersArray[i].result[j].blog.data.length > 0){ %>
-                <img src="data:image/png;base64,<%= usersArray[i].result[j].blog.data[0] %>" class="img-fluid" alt="Sample image for first version of blog listing">
-                <%} else{ %>
-                  <img src="https://images.pexels.com/photos/2419865/pexels-photo-2419865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid" alt="Sample image for first version of blog listing">
-                <%}%>
-              <a>
-                <div class="mask rgba-white-slight"></div>
-              </a>
+              <img src="data:image/png;base64,<%= usersArray[i].result[j].blog.data[0] %>" class="img-fluid"
+                alt="image">
+              <%} else{ %>
+              <img
+                src="https://images.pexels.com/photos/2419865/pexels-photo-2419865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                class="img-fluid" alt="image">
+              <%}%>
+              
             </div>
 
           </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
+         
 
           <div class="bl col-md-7 text-md-left ml-3 mt-3">
             <form action="blogpage" method="POST">
-            <h4 class="h4 mb-4"><input style="border: none;" name="blogTitle" value="<%= usersArray[i].result[j].blog.title %>" readonly> </h4>
+            <h4 class="h4 mb-4"><input style="border: none;" name="blogTitle" value="<%= usersArray[i].result[j].blog.title %>"
+              readonly> </h4>
 
-            <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
-            <p class="font-weight-normal">by <strong><%= usersArray[i].first_name %> <%= usersArray[i].last_name %></strong><br>
-              <% if(typeof usersArray[i].result[j].blog.date !== 'undefined'){ %>
+              <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
+              <p class="font-weight-normal">by <strong><%= usersArray[i].first_name %>
+                  <%= usersArray[i].last_name %></strong><br>
+                <% if(typeof usersArray[i].result[j].blog.date !== 'undefined'){ %>
                 <%= usersArray[i].result[j].blog.date.substring(0,16) %>
                 <%}%>
-              <br><input style="border:none;" name="blogEmail" value="<%= usersArray[i].email %>"></p>
-            <button type="submit" class="btn btn-success">Read more</button>
+              <br><input style="border:none;width:235px;" name="blogEmail" value="<%= usersArray[i].email %>" readonly></p>
+              <button type="submit" class="btn btn-success">Read more</button>
               </form>
-          </div>
-          <!-- Grid column -->
-          <%}%>
+            </div>
+
+            <%}%>
       <%}%>
-          <%}%>
+            <%}%>
   <% } %>
+          </div>
         </div>
-      </div>
-      <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
-        <div class="row">
+        <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+          <div class="row">
 
-          <% if (typeof usersArray !== 'undefined' && usersArray.length > 0) {%>
-          <%for (var i = 0; i < usersArray.length; i++) { %>
-          <% if(usersArray[i].result.length > 0) { %>
-          <% for(var j=0; j< usersArray[i].result.length ; j++) { %>
-          <% for(var k=0; k< usersArray[i].result[j].blog.category.length ; k++) { %>
-          <% if(usersArray[i].result[j].blog.category[k]=='History') { %>
-          <!-- Grid column -->
-          <div class="col-md-4 offset-md-1 mx-3 my-3">
+            <% if (typeof usersArray !== 'undefined' && usersArray.length > 0) {%>
+            <%for (var i = 0; i < usersArray.length; i++) { %>
+            <% if(usersArray[i].result.length > 0) { %>
+            <% for(var j=0; j< usersArray[i].result.length ; j++) { %>
+            <% for(var k=0; k< usersArray[i].result[j].blog.category.length ; k++) { %>
+            <% if(usersArray[i].result[j].blog.category[k]=='History') { %>
 
-            <!-- Featured image -->
-            <div class="view overlay">
-              <% if(typeof usersArray[i].result[j].blog.data !== 'undefined' && usersArray[i].result[j].blog.data.length > 0){ %>
-                <img src="data:image/png;base64,<%= usersArray[i].result[j].blog.data[0] %>" class="img-fluid" alt="Sample image for first version of blog listing">
+            <div class="col-md-4 offset-md-1 mx-3 my-3">
+
+
+              <div class="view overlay">
+                <% if(typeof usersArray[i].result[j].blog.data !== 'undefined' && usersArray[i].result[j].blog.data.length > 0){ %>
+                <img src="data:image/png;base64,<%= usersArray[i].result[j].blog.data[0] %>" class="img-fluid"
+                  alt="image">
                 <%} else{ %>
-                  <img src="https://images.pexels.com/photos/2419865/pexels-photo-2419865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid" alt="Sample image for first version of blog listing">
+                <img
+                  src="https://images.pexels.com/photos/2419865/pexels-photo-2419865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                  class="img-fluid" alt="image">
                 <%}%>
-              <a>
-                <div class="mask rgba-white-slight"></div>
-              </a>
+            
             </div>
 
           </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
+        
 
           <div class="bl col-md-7 text-md-left ml-3 mt-3">
 
             <form action="blogpage" method="POST">
-              <h4 class="h4 mb-4"><input style="border: none;" name="blogTitle" value="<%= usersArray[i].result[j].blog.title %>" readonly> </h4>
-  
-              <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
-              <p class="font-weight-normal">by <a><strong><%= usersArray[i].first_name %> <%= usersArray[i].last_name %></strong></a>
-                <br><input style="border:none;" name="blogEmail" value="<%= usersArray[i].email %>"></p>
-              <button type="submit" class="btn btn-success">Read more</button>
+              <h4 class="h4 mb-4"><input style="border: none;" name="blogTitle" value="<%= usersArray[i].result[j].blog.title %>"
+                readonly> </h4>
+
+                <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
+                <p class="font-weight-normal">by <strong><%= usersArray[i].first_name %>
+                    <%= usersArray[i].last_name %></strong>
+                  <br><input style="border:none;width:235px;" name="blogEmail" value="<%= usersArray[i].email %>" readonly></p>
+                <button type="submit" class="btn btn-success">Read more</button>
                 </form>
 
-          </div>
-          <!-- Grid column -->
-          <% break;}%>
+              </div>
 
-          <%}%>
+              <% break;}%>
+
+              <%}%>
             <%}%>
-          <%}%>
+              <%}%>
   <%}%>
-          <% } %>
-        </div>
-      </div>
-      <div class="tab-pane fade" id="food" role="tabpanel" aria-labelledby="food-tab">
-        <div class="row">
+              <% } %>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="food" role="tabpanel" aria-labelledby="food-tab">
+            <div class="row">
 
-          <% if (typeof usersArray !== 'undefined' && usersArray.length > 0) {%>
-          <%for (var i = 0; i < usersArray.length; i++) { %>
-          <% if(usersArray[i].result.length > 0) { %>
-          <% for(var j=0; j< usersArray[i].result.length ; j++) { %>
-          <% for(var k=0; k< usersArray[i].result[j].blog.category.length ; k++) { %>
-          <% if(usersArray[i].result[j].blog.category[k]=='Food') { %>
-          <!-- Grid column -->
-          <div class="col-md-4 offset-md-1 mx-3 my-3">
+              <% if (typeof usersArray !== 'undefined' && usersArray.length > 0) {%>
+              <%for (var i = 0; i < usersArray.length; i++) { %>
+              <% if(usersArray[i].result.length > 0) { %>
+              <% for(var j=0; j< usersArray[i].result.length ; j++) { %>
+              <% for(var k=0; k< usersArray[i].result[j].blog.category.length ; k++) { %>
+              <% if(usersArray[i].result[j].blog.category[k]=='Food') { %>
 
-            <!-- Featured image -->
-            <div class="view overlay">
-              <% if(typeof usersArray[i].result[j].blog.data !== 'undefined' && usersArray[i].result[j].blog.data.length > 0){ %>
-                <img src="data:image/png;base64,<%= usersArray[i].result[j].blog.data[0] %>" class="img-fluid" alt="Sample image for first version of blog listing">
-                <%} else{ %>
-                  <img src="https://images.pexels.com/photos/2419865/pexels-photo-2419865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid" alt="Sample image for first version of blog listing">
-                <%}%>
-              <a>
-                <div class="mask rgba-white-slight"></div>
-              </a>
+              <div class="col-md-4 offset-md-1 mx-3 my-3">
+
+
+                <div class="view overlay">
+                  <% if(typeof usersArray[i].result[j].blog.data !== 'undefined' && usersArray[i].result[j].blog.data.length > 0){ %>
+                  <img src="data:image/png;base64,<%= usersArray[i].result[j].blog.data[0] %>" class="img-fluid"
+                    alt="image">
+                  <%} else{ %>
+                  <img
+                    src="https://images.pexels.com/photos/2419865/pexels-photo-2419865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                    class="img-fluid" alt="image">
+                  <%}%>
+             
             </div>
 
           </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
+         
 
           <div class="bl col-md-7 text-md-left ml-3 mt-3">
 
             <form action="blogpage" method="POST">
-              <h4 class="h4 mb-4"><input style="border: none;" name="blogTitle" value="<%= usersArray[i].result[j].blog.title %>" readonly> </h4>
-  
-              <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
-              <p class="font-weight-normal">by <a><strong><%= usersArray[i].first_name %> <%= usersArray[i].last_name %></strong></a>
-                <br><input style="border:none;" name="blogEmail" value="<%= usersArray[i].email %>"></p>
-              <button type="submit" class="btn btn-success">Read more</button>
-                </form>
+              <h4 class="h4 mb-4"><input style="border: none;" name="blogTitle" value="<%= usersArray[i].result[j].blog.title %>"
+                  readonly> </h4>
 
-          </div>
-          <!-- Grid column -->
-          <% break;}%>
+                  <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
+                  <p class="font-weight-normal">by <strong><%= usersArray[i].first_name %>
+                      <%= usersArray[i].last_name %></strong>
+                    <br><input style="border:none;width:235px;" name="blogEmail" value="<%= usersArray[i].email %>" readonly></p>
+                  <button type="submit" class="btn btn-success">Read more</button>
+                  </form>
 
-          <%}%>
-            <%}%>
-          <%}%>
-  <%}%>
-          <% } %>
-        </div>
-      </div>
-      <div class="tab-pane fade" id="things" role="tabpanel" aria-labelledby="things-tab">
-        <div class="row">
+                </div>
 
-          <% if (typeof usersArray !== 'undefined' && usersArray.length > 0) {%>
-          <%for (var i = 0; i < usersArray.length; i++) { %>
-          <% if(usersArray[i].result.length > 0) { %>
-          <% for(var j=0; j< usersArray[i].result.length ; j++) { %>
-          <% for(var k=0; k< usersArray[i].result[j].blog.category.length ; k++) { %>
-          <% if(usersArray[i].result[j].blog.category[k]=='Others') { %>
-          <!-- Grid column -->
-          <div class="col-md-4 offset-md-1 mx-3 my-3">
+                <% break;}%>
 
-            <!-- Featured image -->
-            <div class="view overlay">
-              <% if(typeof usersArray[i].result[j].blog.data !== 'undefined' && usersArray[i].result[j].blog.data.length > 0){ %>
-                <img src="data:image/png;base64,<%= usersArray[i].result[j].blog.data[0] %>" class="img-fluid" alt="Sample image for first version of blog listing">
-                <%} else{ %>
-                  <img src="https://images.pexels.com/photos/2419865/pexels-photo-2419865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid" alt="Sample image for first version of blog listing">
                 <%}%>
-              <a>
-                <div class="mask rgba-white-slight"></div>
-              </a>
+            <%}%>
+                <%}%>
+  <%}%>
+                <% } %>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="things" role="tabpanel" aria-labelledby="things-tab">
+              <div class="row">
+
+                <% if (typeof usersArray !== 'undefined' && usersArray.length > 0) {%>
+                <%for (var i = 0; i < usersArray.length; i++) { %>
+                <% if(usersArray[i].result.length > 0) { %>
+                <% for(var j=0; j< usersArray[i].result.length ; j++) { %>
+                <% for(var k=0; k< usersArray[i].result[j].blog.category.length ; k++) { %>
+                <% if(usersArray[i].result[j].blog.category[k]=='Others') { %>
+
+                <div class="col-md-4 offset-md-1 mx-3 my-3">
+
+
+                  <div class="view overlay">
+                    <% if(typeof usersArray[i].result[j].blog.data !== 'undefined' && usersArray[i].result[j].blog.data.length > 0){ %>
+                    <img src="data:image/png;base64,<%= usersArray[i].result[j].blog.data[0] %>" class="img-fluid"
+                      alt="image">
+                    <%} else{ %>
+                    <img
+                      src="https://images.pexels.com/photos/2419865/pexels-photo-2419865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                      class="img-fluid" alt="image">
+                    <%}%>
+              
             </div>
 
           </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
+        
 
           <div class="bl col-md-7 text-md-left ml-3 mt-3">
             
             <form action="blogpage" method="POST">
-              <h4 class="h4 mb-4"><input style="border: none;" name="blogTitle" value="<%= usersArray[i].result[j].blog.title %>" readonly> </h4>
-  
-              <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
-              <p class="font-weight-normal">by <a><strong><%= usersArray[i].first_name %> <%= usersArray[i].last_name %></strong></a>
-                <br><input style="border:none;" name="blogEmail" value="<%= usersArray[i].email %>"></p>
-              <button type="submit" class="btn btn-success">Read more</button>
-                </form>
+              <h4 class="h4 mb-4"><input style="border: none;" name="blogTitle" value="<%= usersArray[i].result[j].blog.title %>"
+                    readonly> </h4>
 
-          </div>
-          <!-- Grid column -->
-          <% break;}%>
+                    <p class="font-weight-normal"><%= usersArray[i].result[j].blog.description %></p>
+                    <p class="font-weight-normal">by <strong><%= usersArray[i].first_name %>
+                        <%= usersArray[i].last_name %></strong>
+                      <br><input style="border:none;width:235px;" name="blogEmail" value="<%= usersArray[i].email %>" readonly></p>
+                    <button type="submit" class="btn btn-success">Read more</button>
+                    </form>
 
-          <%}%>
+                  </div>
+
+                  <% break;}%>
+
+                  <%}%>
               <%}%>
-          <%}%>
+                  <%}%>
     <%}%>
-          <% } %>
-        </div>
-      </div>
-    </div>
-  </div>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
 
 
 
-  <br><br>
-  <footer class="page-footer font-small pt-5 pb-n5">
+          <br><br>
+          <footer class="page-footer font-small pt-5 pb-n5">
 
-    <!--Footer Links-->
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-4">
-          <h1>GlobeTrotters.</h1>
 
-        </div>
-        <!--/.First column-->
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-4">
+                  <h1>GlobeTrotters.</h1>
 
-        <!--Second column-->
-        <div class="col-md-4">
+                </div>
 
-          <ul>
-            <li><a href="#!">About Us</a></li>
-            <li><a href="#!">Destinations</a></li>
-            <li><a href="#!">FAQs</a></li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <h4>Contact Us</h4>
-          <p><i class="fa fa-mobile" aria-hidden="true"></i> 1234567890
-            <br><i class="fa fa-phone" aria-hidden="true"></i> 0987654321
-            <br><a href="mailto:globetrotters@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i>
-              globetrotters@gmail.com</a></p>
-        </div>
-        <!--/.Second column-->
-      </div>
-    </div>
+                <div class="col-md-4">
 
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3"> Made with <i class="far fa-heart"></i> by GlobeTrotters
-    </div>
-    <!-- Copyright -->
+                  <ul>
+                    <li><a href="/#About-us">About Us</a></li>
+                    <li><a href="/destination">Destinations</a></li>
+                    <li><a href="/#FAQs">FAQs</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-4" id="Contact">
+                  <h4>Contact Us</h4>
+                  <p><i class="fa fa-mobile" aria-hidden="true"></i> 1234567890
+                    <br><i class="fa fa-phone" aria-hidden="true"></i> 0987654321
+                    <br><a href="mailto:globetrotters@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i>
+                      globetrotters@gmail.com</a></p>
+                </div>
 
-  </footer>
+              </div>
+            </div>
 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/js/mdb.min.js"></script>
+
+            <div class="footer-copyright text-center py-3"> Made with <i class="far fa-heart"></i> by GlobeTrotters
+            </div>
+
+
+          </footer>
+
+          <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+          <!-- Bootstrap tooltips -->
+          <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+          <!-- Bootstrap core JavaScript -->
+          <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+          <!-- MDB core JavaScript -->
+          <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/js/mdb.min.js"></script>
 
 </body>
 

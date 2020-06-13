@@ -14,7 +14,7 @@ To install nodemon
 ```
 To run the application
 ```
- nodemon app
+ nodemon app / npm run dev
 ```
 To set-up the database in MongoDB server-
 * [download MongoDB from here](https://www.mongodb.com/download-center/community)

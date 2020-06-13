@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>new blog</title>
+    <title>New Blog | GlobeTrotters</title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Google Fonts -->
@@ -152,7 +152,7 @@
     </header>
 
     <br><br>
-    <!-- Default form contact -->
+
     <div class="container-fluid">
         <div class="col-md-8 offset-2">
             <div>
@@ -160,11 +160,11 @@
 
                     <%- include('./partials/messages.ejs'); %>
 
-                    <!-- Name -->
+
                     <input name="blog_title" type="text" id="blogname" class="form-control mb-4 col-4"
                         placeholder="Title of the blog">
 
-                    <!-- Subject -->
+
                     <label><i class="fas fa-flag"></i> Choose a Country</label><br>
 
                     <select name="blog_country" class="browser-default custom-select mb-4 col-4">
@@ -173,20 +173,20 @@
                         <option value="<%= opt %>"><%= opt %></option>
                         <%}) }) %>
                     </select><br>
-                    <!-- Default inline 1-->
+
                     <div class="custom-control custom-checkbox custom-control-inline">
                         <input name="blog_category" value="History" type="checkbox" class="custom-control-input"
                             id="cat1">
                         <label class="custom-control-label" for="cat1"><i class="fas fa-landmark"></i> History</label>
                     </div>
 
-                    <!-- Default inline 2-->
+
                     <div class="custom-control custom-checkbox custom-control-inline">
                         <input name="blog_category" value="Food" type="checkbox" class="custom-control-input" id="cat2">
                         <label class="custom-control-label" for="cat2"><i class="fas fa-utensils"></i> Food</label>
                     </div>
 
-                    <!-- Default inline 3-->
+
                     <div class="custom-control custom-checkbox custom-control-inline">
                         <input name="blog_category" value="Others" type="checkbox" class="custom-control-input"
                             id="cat3">
@@ -195,24 +195,22 @@
                     </div><br>
                     <input name="blog_description" type="text" id="description" class="form-control mb-4"
                         placeholder="Description">
-                    <!-- Message -->
+
                     <div class="form-group">
                         <textarea name="blog_content" class="form-control rounded-0" id="blog_content" rows="10"
                             placeholder="Your blog goes here..."></textarea>
                     </div>
 
-                    <!-- Copy -->
-
                     <div class="row">
                         <div class="col-md-6 m-auto">
                             <div class="form-group files">
-                                <label>Upload Your File</label>
-                                <input type="file" name="files" class="form-control" multiple>
+                                <label for="imgUp">Upload Your File</label>
+                                <input id="imgUp" type="file" name="files" class="form-control" multiple>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Send button -->
+
                     <button class="btn purple-gradient" type="submit">Post</button>
             </div>
 
@@ -221,7 +219,7 @@
         </div>
     </div>
     </div>
-    <!-- Default form contact -->
+
 
 
 
@@ -229,7 +227,7 @@
 
     <footer class="page-footer font-small pt-4">
 
-        <!--Footer Links-->
+
         <div class="container-fluid">
             <div class="row">
 
@@ -238,9 +236,7 @@
                     <h1>GlobeTrotters.</h1>
 
                 </div>
-                <!--/.First column-->
 
-                <!--Second column-->
                 <div class="col-md-4">
 
                     <ul>
@@ -253,22 +249,23 @@
                     <h4>Contact Us</h4>
                     <p><i class="fa fa-mobile" aria-hidden="true"></i> 1234567890
                         <br><i class="fa fa-phone" aria-hidden="true"></i> 0987654321
-                        <br><a href="mailto:globetrotters@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i>
-                            globetrotters@gmail.com</a></p>
+                        <br><a href="mailto:globetrotters0820@gmail.com"><i class="fa fa-envelope"
+                                aria-hidden="true"></i>
+                            globetrotters0820@gmail.com</a></p>
                 </div>
-                <!--/.Second column-->
+
             </div>
         </div>
 
-        <!-- Copyright -->
+
         <div class="footer-copyright text-center py-3"> Made with <i class="far fa-heart"></i> by GlobeTrotters
         </div>
-        <!-- Copyright -->
+
 
     </footer>
     <script>
         AOS.init();
-      </script>
+    </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript"

@@ -30,7 +30,7 @@
       height: 94%;
     }
 
-    .bl{
+    .bl {
       margin-top: 9px;
     }
   </style>
@@ -61,14 +61,14 @@
             <a class="nav-link" href="/#FAQs">FAQs</a>
           </li>
           <% if(user){%>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">Logout</a>
-            </li>
-            <% } else { %>  
-            <li class="nav-item">
-              <a class="nav-link" href="/">Login</a>
-            </li>
-            <% } %>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+          <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Login</a>
+          </li>
+          <% } %>
         </ul>
 
       </div>
@@ -81,17 +81,23 @@
         <div class="mask rgba-black-light flex-center">
           <div class="container text-center white-text">
             <div class="offset-4 white-text text-center pt-5 row">
-
-              <img width="15%" height="50%"
-                src="https://cdn4.iconfinder.com/data/icons/occupation-and-people-avatar-vol-1-1/128/Woman_avatar_assistant_young_people_female_girl-512.png"/>
-              <div>
-                <h2>  <%= dashboard.first_name %> <%= dashboard.last_name %> </h2>
-                <a style="padding: 3px;" class="btn btn-primary" href="/profile">Profile</a>
-              </div>  
+              <% if(dashboard.ProfilePic == 'NA'){ %>
+              <img style="border-radius: 3px;" width="15%" height="50%" src="/images/GlobeTrotters.jpeg"
+                class="img-fluid" alt="Profile">
+              <%} else{ %>
+              <img style="border-radius: 3px;" width="15%" height="50%"
+                src="data:image/png;base64,<%= dashboard.ProfilePic %>" class="img-fluid" alt="Profile">
+              <%}%>
+              
+              <div class="offset-1">
+                
+                <h1> <br> <%= dashboard.first_name %> <%= dashboard.last_name %><br> </h1>
+              <a style="padding: 3px;" class="btn btn-primary" href="/profile">Profile</a>
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
 
   </header>
@@ -104,114 +110,117 @@
           aria-controls="pills-home" aria-selected="true"><i class="fas fa-desktop mr-2"></i>My Wall</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="pills-profile-tab" href="/newblog" role="tab"
-          aria-controls="pills-profile" aria-selected="false"><i class="far fa-edit mr-2"></i>Add Blog</a>
+        <a class="nav-link" id="pills-profile-tab" href="/newblog" role="tab" aria-controls="pills-profile"
+          aria-selected="false"><i class="far fa-edit mr-2"></i>Add Blog</a>
       </li>
     </ul>
-    <!--/.Navbar-->
+
     <div class="row offset-1">
 
-      <!-- Card Wider -->
+      <% var i = -1 %>
+      
       <% dashboard.continent.forEach(function (wall) { %>
-      <!-- Card -->
-      <div data-aos="fade-up"
-      data-aos-duration="3000" class="bl card col-md-5 m-4 h-100">
 
-        <!-- Card image -->
+      <div data-aos="fade-up" data-aos-duration="3000" class="bl card col-md-5 m-4 h-100">
+
+        <% i++ %>
         <div class="view overlay">
           <% if(typeof wall.blog.data !== 'undefined' && wall.blog.data.length > 0){ %>
-            <img src="data:image/png;base64,<%= wall.blog.data[0] %>" class="img-fluid" alt="Sample image for first version of blog listing">
-            <%} else{ %>
-              <img src="https://images.pexels.com/photos/2419865/pexels-photo-2419865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid" alt="Sample image for first version of blog listing">
-            <%}%>
-          <a href="#!">
-            <div class="mask rgba-white-slight"></div>
-          </a>
+          <img src="data:image/png;base64,<%= wall.blog.data[0] %>" class="img-fluid" alt="here is a picture">
+          <%} else{ %>
+          <img
+            src="https://images.pexels.com/photos/2419865/pexels-photo-2419865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+            class="img-fluid" alt="Sample image for first version of blog listing">
+          <%}%>
+          
         </div>
 
-        <!-- Card content -->
+        
         <div class="card-body">
           <form formaction="blogpage" method="POST" id="formBlog">
-          <!-- Title -->
-          <h4 class="card-title"><input style="border: none;" name="blogTitle" value="<%= wall.blog.title %>" readonly></h4>
-          <!-- Text -->
-          <p class="card-text"><%= wall.blog.description %><br><input style="border:none;" name="blogEmail" value="<%= dashboard.email %>"><br>
-          <% if(typeof wall.blog.date !== 'undefined'){ %>
+         
+          <h4 class="card-title"><input style="border: none;" name="blogTitle" value="<%= wall.blog.title %>" readonly>
+          </h4>
+
+          <p class="card-text"><%= wall.blog.description %><br><input style="border:none;width:235px;" name="blogEmail"
+              value="<%= dashboard.email %>" readonly><br>
+            <% if(typeof wall.blog.date !== 'undefined'){ %>
             <%= wall.blog.date.substring(0,16) %></p>
-            <%}%>
-          <!-- Button -->
-          <button formaction="edit" type="submit" class="btn btn-success">edit  <i class="fas fa-angle-double-right"></i></button>
+          <%}%>
+        
+          <button formaction="edit" type="submit" class="btn btn-success" name="wallID" value="<%= i %>">edit  <i class="fas fa-angle-double-right"></i></button>
           <button formaction="blogpage" type="submit" class="btn btn-success">Read more  <i class="fas fa-angle-double-right"></i></button>
+          
           </form>
 
         </div>
 
       </div>
-      <!-- Card -->
+     
       <% }) %>
-      
-    </div>
-
-    <!-- Card Light -->
-
-    <!-- Card Light -->
-  </div>
-
-  </div>
-
-
-
-  <br><br>
-  <footer class="page-footer font-small pt-5 pb-n5">
-
-    <!--Footer Links-->
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-4">
-          <h1>GlobeTrotters.</h1>
 
         </div>
-        <!--/.First column-->
 
-        <!--Second column-->
-        <div class="col-md-4">
 
-          <ul>
-            <li><a href="/#About-us">About Us</a></li>
-            <li><a href="/destination">Destinations</a></li>
-            <li><a href="/#FAQs">FAQs</a></li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <h4>Contact Us</h4>
-          <p><i class="fa fa-mobile" aria-hidden="true"></i> 1234567890
-            <br><i class="fa fa-phone" aria-hidden="true"></i> 0987654321
-            <br><a href="mailto:globetrotters@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i>
-              globetrotters@gmail.com</a></p>
-        </div>
-        <!--/.Second column-->
       </div>
+
     </div>
 
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3"> Made with <i class="far fa-heart"></i> by GlobeTrotters
-    </div>
-    <!-- Copyright -->
 
-  </footer>
-  <script>
-    AOS.init();
-  </script>
 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/js/mdb.min.js"></script>
+    <br><br>
+
+
+
+    <footer class="page-footer font-small pt-5 pb-n5">
+
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-4">
+            <h1>GlobeTrotters.</h1>
+
+          </div>
+
+          <div class="col-md-4">
+
+            <ul>
+              <li><a href="/#About-us">About Us</a></li>
+              <li><a href="/destination">Destinations</a></li>
+              <li><a href="/#FAQs">FAQs</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4" id="Contact">
+            <h4>Contact Us</h4>
+            <p><i class="fa fa-mobile" aria-hidden="true"></i> 1234567890
+              <br><i class="fa fa-phone" aria-hidden="true"></i> 0987654321
+              <br><a href="mailto:globetrotters0820@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i>
+                globetrotters0820@gmail.com</a></p>
+          </div>
+
+        </div>
+      </div>
+
+     
+      <div class="footer-copyright text-center py-3"> Made with <i class="far fa-heart"></i> by GlobeTrotters
+      </div>
+     
+
+    </footer>
+    <script>
+      AOS.init();
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/js/mdb.min.js"></script>
 
 </body>
 
