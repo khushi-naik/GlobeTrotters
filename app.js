@@ -33,7 +33,8 @@ app.set('view engine', 'ejs');
 var nStatic = require('node-static');
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/blog', ({ useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify:false }));
+const url = 'mongodb+srv://globetrotters:j2k@2020@cluster0-mdaud.mongodb.net/GlobeTrotters?retryWrites=true&w=majority'
+mongoose.connect(url, ({ useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify:false }));
 var db = mongoose.connection;
 db.on('error', console.log.bind(console, "connection error"));
 console.log("connection succeeded");

@@ -1,0 +1,93 @@
+[{
+  "_id": {
+    "$oid": "5eba9578d6e9b982e32759cf"
+  },
+  "continent": "Africa",
+  "country": [
+    "Morocco",
+    "Egypt",
+    "South Africa",
+    "Tunisia",
+    "Zimbabwe",
+    "Ivory Coast",
+    "Botswana",
+    "Mauritius",
+    "Kenya",
+    "Uganda"
+  ]
+},{
+  "_id": {
+    "$oid": "5eba9578d6e9b982e32759d0"
+  },
+  "continent": "Asia",
+  "country": [
+    "India",
+    "Thailand",
+    "Singapore",
+    "Vietnam",
+    "Japan",
+    "Malaysia",
+    "Maldives",
+    "Philippines",
+    "Jordan",
+    "Turkey",
+    "United Arab Emirates",
+    "Israel",
+    "China"
+  ]
+},{
+  "_id": {
+    "$oid": "5eba994ad6e9b982e32759d1"
+  },
+  "continent": "Australia",
+  "country": [
+    "Australia",
+    "New Zealand",
+    "Fiji"
+  ]
+},{
+  "_id": {
+    "$oid": "5eba994ad6e9b982e32759d2"
+  },
+  "continent": "Europe",
+  "country": [
+    "Italy",
+    "France",
+    "Greece",
+    "United Kingdom",
+    "Ireland",
+    "Germany",
+    "Switzerland",
+    "Netherlands",
+    "Spain",
+    "Sweden"
+  ]
+},{
+  "_id": {
+    "$oid": "5ebaa35dd6e9b982e32759d3"
+  },
+  "continent": "North America",
+  "country": [
+    "The United States of America",
+    "Canada",
+    "Mexico",
+    "Panama",
+    "Bahamas",
+    "Costa Rica"
+  ]
+},{
+  "_id": {
+    "$oid": "5ebaa35dd6e9b982e32759d4"
+  },
+  "continent": "South America",
+  "country": [
+    "Brazil",
+    "Argentina",
+    "Dominican Republic",
+    "Chile",
+    "Cuba",
+    "Puerto Rico",
+    "Peru",
+    "Columbia"
+  ]
+}]
