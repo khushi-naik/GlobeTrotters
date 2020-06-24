@@ -121,6 +121,7 @@ app.post('/login', function (req, res, next) {
     passport.authenticate('local', {
         successRedirect: '/dashboard',
         failureRedirect: '/',
+        failureFlash: true
     })(req, res, next);
 })
 
@@ -538,6 +539,8 @@ var wall
       })
  })
 
-app.listen(3000, function () {
+ const PORT = process.env.PORT || 3000
+
+app.listen(PORT, function () {
     console.log("connected to server 3000");
 });
