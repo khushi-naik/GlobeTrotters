@@ -12,6 +12,7 @@ const flash = require('connect-flash')
 const randomstring = require('randomstring')
 const nodemailer = require('nodemailer')
 const async = require('async')
+const ExpressLayouts = require('express-ejs-layouts')
 
 //authentication
 const { ensureAuthenticated } = require('./config/auth')
@@ -28,6 +29,8 @@ require('./config/passport')(passport)
 
 var app = express();
 
+//EJS
+app.use(ExpressLayouts)
 app.set('view engine', 'ejs');
 
 var nStatic = require('node-static');
@@ -134,7 +137,7 @@ app.get('/logout', (req, res) => {
 
 //signup form
 app.get('/signup', function (req, res) {
-    res.sendFile(path.join(__dirname + '/views/signup.html'));
+    res.render('signup')
 });
 
 //information from sign up form
@@ -143,7 +146,6 @@ app.post('/sign_up', function (req, res) {
     uploads(req, res, (err) => {
         if(err){
           throw err
-          
         } else {
             if(req.file == undefined) {
                 image = "NA"
@@ -225,7 +227,6 @@ app.post('/sign_up', function (req, res) {
 
             }
             else {
-                console.log(result);
                 res.send("email id has been registered already");
             }
         });
