@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <title>Profile | GlobeTrotters</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-     <!-- Bootstrap core CSS -->
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -168,7 +168,7 @@
                             
                             <%- include('./partials/messages.ejs'); %>
                 
-                            <%if(user.ProfilePic == "NA"){ %>
+                            <%if(user.ProfilePic == "NA" || !user.ProfilePic){ %>
                             <img width=70%" src="/images/GlobeTrotters.jpeg" />
                             <%}else{%>
                             <img width="70%" src="data:image/png;base64,<%= user.ProfilePic %>" />

@@ -464,14 +464,12 @@ app.post('/RemovePhoto', async (req, res) => {
 app.post('/upload', (req, res) => {
     uploads(req, res, (err) => {
      if(err){
-       res.render('profile', {
-         msg: err
-       });
+        req.flash('error_msg', err)
+        res.redirect('/profile')
      } else {
        if(req.file == undefined){
-         res.render('profile', {
-           msg: 'Error: No File Selected!'
-         });
+        req.flash('error_msg', "No Pic Selected")
+        res.redirect('/profile');
        } else {
           User.findOne({ email: req.user.email }, (err, result) => {
                if(err) throw err
