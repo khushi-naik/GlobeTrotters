@@ -12,7 +12,6 @@ const flash = require('connect-flash')
 const randomstring = require('randomstring')
 const nodemailer = require('nodemailer')
 const async = require('async')
-const ExpressLayouts = require('express-ejs-layouts')
 
 //authentication
 const { ensureAuthenticated } = require('./config/auth')
@@ -30,7 +29,6 @@ require('./config/passport')(passport)
 var app = express();
 
 //EJS
-app.use(ExpressLayouts)
 app.set('view engine', 'ejs');
 
 var nStatic = require('node-static');

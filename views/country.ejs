@@ -1,3 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Country | GlobeTrotters</title>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/css/mdb.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="images/land.css">
+  <style>
+    .view {
+      background: url("https://images.pexels.com/photos/672358/pexels-photo-672358.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")no-repeat center center;
+      background-size: cover;
+    }
+
+    header {
+      height: 60%;
+    }
+
+    .view {
+      height: 94%;
+    }
+
+    .bl {
+      margin-top: 9px;
+    }
+  </style>
+
+</head>
+
+<body>
 
   <header>
 
@@ -41,7 +77,7 @@
 
       </div>
     </nav>
-    <div class="view2 intro-2">
+    <div class="view intro-2">
       <div class="full-bg-img">
         <div class="mask rgba-black-light flex-center">
           <div class="container text-center white-text">
@@ -92,7 +128,7 @@
           <div class="col-md-4 offset-md-1 mx-3 my-3">
 
 
-            <div class="view2 overlay">
+            <div class="view overlay">
               <% if(typeof usersArray[i].result[j].blog.data !== 'undefined' && usersArray[i].result[j].blog.data.length > 0){ %>
               <img src="data:image/png;base64,<%= usersArray[i].result[j].blog.data[0] %>" class="img-fluid"
                 alt="image">
@@ -142,7 +178,7 @@
             <div class="col-md-4 offset-md-1 mx-3 my-3">
 
 
-              <div class="view2 overlay">
+              <div class="view overlay">
                 <% if(typeof usersArray[i].result[j].blog.data !== 'undefined' && usersArray[i].result[j].blog.data.length > 0){ %>
                 <img src="data:image/png;base64,<%= usersArray[i].result[j].blog.data[0] %>" class="img-fluid"
                   alt="image">
@@ -194,7 +230,7 @@
               <div class="col-md-4 offset-md-1 mx-3 my-3">
 
 
-                <div class="view2 overlay">
+                <div class="view overlay">
                   <% if(typeof usersArray[i].result[j].blog.data !== 'undefined' && usersArray[i].result[j].blog.data.length > 0){ %>
                   <img src="data:image/png;base64,<%= usersArray[i].result[j].blog.data[0] %>" class="img-fluid"
                     alt="image">
@@ -246,7 +282,7 @@
                 <div class="col-md-4 offset-md-1 mx-3 my-3">
 
 
-                  <div class="view2 overlay">
+                  <div class="view overlay">
                     <% if(typeof usersArray[i].result[j].blog.data !== 'undefined' && usersArray[i].result[j].blog.data.length > 0){ %>
                     <img src="data:image/png;base64,<%= usersArray[i].result[j].blog.data[0] %>" class="img-fluid"
                       alt="image">
@@ -288,4 +324,59 @@
             </div>
           </div>
 
+
+
+
+
           <br><br>
+          <footer class="page-footer font-small pt-5 pb-n5">
+
+
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-4">
+                  <h1>GlobeTrotters.</h1>
+
+                </div>
+
+                <div class="col-md-4">
+
+                  <ul>
+                    <li><a href="/#About-us">About Us</a></li>
+                    <li><a href="/destination">Destinations</a></li>
+                    <li><a href="/#FAQs">FAQs</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-4" id="Contact">
+                  <h4>Contact Us</h4>
+                  <p><i class="fa fa-mobile" aria-hidden="true"></i> 1234567890
+                    <br><i class="fa fa-phone" aria-hidden="true"></i> 0987654321
+                    <br><a href="mailto:globetrotters@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i>
+                      globetrotters@gmail.com</a></p>
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="footer-copyright text-center py-3"> Made with <i class="far fa-heart"></i> by GlobeTrotters
+            </div>
+
+
+          </footer>
+
+          <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+          <!-- Bootstrap tooltips -->
+          <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+          <!-- Bootstrap core JavaScript -->
+          <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+          <!-- MDB core JavaScript -->
+          <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/js/mdb.min.js"></script>
+
+</body>
+
+</html>
