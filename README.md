@@ -1,6 +1,7 @@
 # GlobeTrotters
 
 GlobeTrotters is a web-platform for travellers around the world to share their experiences through blogs by posting their content.
+
 https://globetrotters-0820.herokuapp.com/
 
 **Following are the steps to run the above web application-**
